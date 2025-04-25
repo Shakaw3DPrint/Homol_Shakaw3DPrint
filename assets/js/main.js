@@ -10,10 +10,20 @@ const precosEspeciais = {
 };
 
 const descricoesEspeciais = {
-  // ... descrições especiais
+  // ... suas descrições especiais
 };
 
 const observacaoPadrao = '<br><strong>Observação:</strong> Todos os produtos...';
+
+async function createProduct(i) {
+  const index = i.toString().padStart(2, '0');
+  const mainImageUrl = `assets/img/produtos/${index}.png`;
+  
+  // Restante da função createProduct...
+  // Todas as referências a imagens devem usar o novo caminho:
+  // Exemplo para thumbnails:
+  const thumbUrl = `assets/img/produtos/${index}_${j}.png`;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   initCarousel();
