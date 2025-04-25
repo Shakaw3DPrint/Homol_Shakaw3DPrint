@@ -1,66 +1,121 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #0057b7, #06abff);
+  background: linear-gradient(135deg, #00303f, #005f7f);
   color: white;
-  text-align: center;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .container {
+  width: 100%;
   max-width: 600px;
-  padding: 40px;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+}
+
+.confirmation-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
-  width: 150px;
   border-radius: 50%;
   border: 4px solid white;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.confirmation-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.check-icon {
+  margin-bottom: 1rem;
+  animation: checkScale 0.5s ease-in-out;
+}
+
+.contact-options {
+  margin: 2rem 0;
 }
 
 .contact-buttons {
-  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .whatsapp-btn, .instagram-btn {
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 50px;
   font-weight: bold;
-  margin: 10px;
-  transition: transform 0.3s;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .whatsapp-btn {
   background-color: #25D366;
+  color: white;
 }
 
 .instagram-btn {
   background: linear-gradient(45deg, #405DE6, #833AB4);
+  color: white;
 }
 
-.icon {
-  width: 20px;
-  vertical-align: middle;
-  margin-right: 8px;
+.order-info {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 2rem 0;
 }
 
 .back-btn {
   display: inline-block;
-  background-color: #0077cc;
+  padding: 0.75rem 1.5rem;
+  background: #0077cc;
   color: white;
   text-decoration: none;
-  padding: 10px 20px;
   border-radius: 5px;
-  margin-top: 30px;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background: #005fa3;
+}
+
+@keyframes checkScale {
+  0% { transform: scale(0); }
+  80% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .confirmation-card {
+    padding: 1.5rem;
+  }
+  
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 }
