@@ -1,35 +1,127 @@
 @media (max-width: 768px) {
+    /* Layout geral */
     .product {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
+        padding: 15px;
     }
     
     .product-details {
         padding: 20px;
         width: 100%;
+        margin-top: 15px;
     }
     
+    /* Imagens */
     .main-img {
         width: 100%;
         max-width: 300px;
+        height: auto;
+        border-radius: 8px;
     }
     
+    /* Carrossel */
     .carousel-container {
         height: 250px;
+        margin: 20px auto;
+        border-radius: 8px;
     }
     
-    .modal-nav {
-        padding: 10px;
+    .carousel-btn {
+        padding: 12px;
         font-size: 16px;
     }
     
-    .zoom-controls {
-        bottom: 10px;
+    /* Modal */
+    .modal-content {
+        max-width: 95%;
+        max-height: 85vh;
     }
     
+    .modal-nav {
+        padding: 12px;
+        font-size: 16px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .close {
+        font-size: 32px;
+        top: 15px;
+        right: 20px;
+    }
+    
+    .zoom-controls {
+        bottom: 15px;
+        padding: 10px 15px;
+        border-radius: 20px;
+    }
+    
+    .zoom-controls button {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    /* Painel de interesse */
     #interestPanel {
         right: 10px;
         bottom: 70px;
         max-width: calc(100% - 20px);
+        padding: 15px;
+    }
+    
+    /* Botões flutuantes */
+    .interest-btn, #backToTopBtn {
+        padding: 12px 18px;
+        font-size: 14px;
+        bottom: 20px;
+    }
+    
+    .interest-btn {
+        left: 15px;
+    }
+    
+    #backToTopBtn {
+        right: 15px;
+    }
+    
+    /* Formulários */
+    .contact-modal-content {
+        margin: 10% auto;
+        padding: 20px;
+        width: 85%;
+    }
+    
+    .form-section {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para telas muito pequenas */
+    .carousel-container {
+        height: 200px;
+    }
+    
+    .modal-nav {
+        width: 35px;
+        height: 35px;
+        padding: 8px;
+    }
+    
+    .product-details h2 {
+        font-size: 1.5rem;
+    }
+    
+    .zoom-controls {
+        bottom: 10px;
+        transform: translateX(-50%) scale(0.9);
+    }
+    
+    .interest-btn, #backToTopBtn {
+        padding: 10px 15px;
+        font-size: 13px;
     }
 }
