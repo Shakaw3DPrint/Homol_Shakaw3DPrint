@@ -1,4 +1,4 @@
-/* Variáveis de cores e tipografia */
+/* Variáveis de cores */
 :root {
   --primary-dark: #002b36;
   --secondary-dark: #00303f;
@@ -18,14 +18,13 @@ body {
   line-height: 1.6;
 }
 
-/* Header aprimorado */
+/* Header */
 .header {
   text-align: center;
-  padding: 50px 20px 30px;
+  padding: 40px 20px;
   position: relative;
   background: linear-gradient(to bottom, var(--primary-dark), var(--secondary-dark));
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
 }
 
 .header img {
@@ -99,71 +98,7 @@ body {
   padding: 0 25px;
 }
 
-/* Loader animado */
-.loader {
-  border: 5px solid rgba(255, 255, 255, 0.1);
-  border-top: 5px solid var(--accent-teal);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
-  margin: 40px auto;
-  display: none;
-  position: relative;
-}
-
-.loader::after {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
-  border: 3px solid rgba(255, 215, 0, 0.2);
-  border-radius: 50%;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Efeitos de hover genéricos */
-.hover-grow {
-  transition: var(--transition-base);
-}
-
-.hover-grow:hover {
-  transform: scale(1.03);
-}
-
-/* Responsividade básica */
-@media (max-width: 768px) {
-  .header {
-    padding: 40px 15px 25px;
-  }
-  
-  .header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .header-links {
-    gap: 10px;
-  }
-  
-  .header a {
-    padding: 6px 12px;
-    font-size: 0.9rem;
-  }
-  
-  .catalog-page {
-    gap: 30px;
-    padding: 0 15px;
-  }
-}
-/* Adicione isso ao seu style.css existente */
-
-/* Estilos para produtos */
+/* Produtos */
 .product {
   display: flex;
   background-color: #fff;
@@ -253,4 +188,106 @@ body {
   background: #008b7c;
   transform: translateY(-2px);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Loader animado */
+.loader {
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-top: 5px solid var(--accent-teal);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+  margin: 40px auto;
+  display: none;
+  position: relative;
+}
+
+.loader::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 3px solid rgba(255, 215, 0, 0.2);
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Botão voltar ao topo */
+#backToTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  background-color: var(--primary-dark);
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 43, 54, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: none;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+#backToTopBtn:hover {
+  background-color: #00303f;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 43, 54, 0.4);
+}
+
+/* Painel de interesses */
+#interestPanel {
+  display: none;
+  position: fixed;
+  right: 30px;
+  bottom: 80px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  z-index: 1001;
+}
+
+#interestList {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.interest-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 1000;
+  background-color: var(--accent-teal);
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 43, 54, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.interest-btn:hover {
+  background-color: #008b7c;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 43, 54, 0.4);
 }
