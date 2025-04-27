@@ -87,6 +87,23 @@ body {
   margin-right: 8px;
   filter: brightness(0) invert(1);
 }
+.header-container {
+  max-width: 1200px; /* ou o tamanho do seu container */
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header img.logo {
+  width: 250px;       /* Tamanho desejado */
+  height: 250px;      /* Manter proporção quadrada */
+  max-width: 100%;    /* Garante que não ultrapasse o container */
+  object-fit: contain; /* Mantém a proporção */
+  border-radius: 50%;
+  border: none;
+}
 
 /* Página de catálogo */
 .catalog-page {
