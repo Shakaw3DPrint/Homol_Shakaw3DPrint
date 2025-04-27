@@ -19,7 +19,7 @@ export function initCarousel() {
     // Carrega imagens do carrossel com verificação
     const loadImage = (i) => {
         return new Promise((resolve) => {
-            const imgUrl = `assets/img/carrossel/c_${i}.jpg`;
+            const imgUrl = `assets/img/carrossel/c_${i}.webp`;
             const img = new Image();
             
             img.onload = () => {
