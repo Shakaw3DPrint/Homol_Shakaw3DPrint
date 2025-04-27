@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Catálogo Shakaw 3D Print</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/carousel.css">
+  <link rel="stylesheet" href="assets/css/modal.css">
+  <link rel="stylesheet" href="assets/css/form.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Catálogo Shakaw 3D Print - Modelos 3D personalizados">
@@ -18,7 +27,27 @@
   <link rel="icon" href="img/favicon.webp" type="image/webp">
 </head>
 <body>
-  <!-- Cabeçalho -->
+<!-- Cabeçalho -->
+ <header class="header">
+  <div class="header-container">
+    <!-- Logo - verifique o caminho correto -->
+    <img src="assets/img/logo.png" alt="Logo Shakaw 3D Print" class="logo">
+    
+    <h1>Shakaw 3D Print</h1>
+    
+    <div class="header-links">
+      <!-- Link do Instagram corrigido -->
+      <a href="https://www.instagram.com/shakaw3dprint" target="_blank" rel="noopener noreferrer">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/32px-Instagram_logo_2016.svg.png" 
+       alt="Instagram" 
+       width="32" 
+       height="32">
+  @shakaw3dprint
+</a>
+      
+      <a href="outros-projetos.html" target="_blank" rel="noopener noreferrer">
+        Outros Projetos
+      </a>
   <header class="header">
     <div class="header-container">
       <img src="img/logo.webp" alt="Logo Shakaw 3D Print" class="logo" width="180" height="180" loading="eager">
@@ -30,26 +59,109 @@
         </a>
         <a href="outros-projetos.html">Outros Projetos</a>
       </div>
+</div>
+  </div>
+</header>
+
+  <!-- Carrossel -->
+  <section class="carousel-section">
+    <div class="carousel-container">
+      <div class="carousel" id="carousel"></div>
+      <button class="carousel-btn prev" aria-label="Imagem anterior">❮</button>
+      <button class="carousel-btn next" aria-label="Próxima imagem">❯</button>
+      <div class="carousel-indicators" id="carouselIndicators"></div>
     </div>
+  </section>
   </header>
 
-  <!-- Conteúdo Principal -->
+<!-- Conteúdo Principal -->
+  <main class="main-content">
   <main>
-    <div class="loader" id="loader"></div>
-    <div class="catalog-page" id="catalog"></div>
-  </main>
+<div class="loader" id="loader"></div>
+<div class="catalog-page" id="catalog"></div>
+</main>
 
+  <!-- Modal de Imagem -->
+  <div id="imgModal" class="modal" aria-hidden="true" role="dialog">
+    <span class="close" tabindex="0" aria-label="Fechar modal">&times;</span>
+    <button class="modal-nav modal-prev" aria-label="Imagem anterior">❮</button>
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="" class="modal-image">
+    </div>
+    <button class="modal-nav modal-next" aria-label="Próxima imagem">❯</button>
+    <div class="zoom-controls">
+      <button class="zoom-in" aria-label="Aumentar zoom">+</button>
+      <button class="zoom-out" aria-label="Diminuir zoom">-</button>
+      <button class="zoom-reset" aria-label="Resetar zoom">Reset</button>
+    </div>
+  </div>
+
+  <!-- Modal de Contato -->
+  <div id="contactModal" class="contact-modal" aria-hidden="true" role="dialog">
+    <div class="contact-modal-content">
+      <span class="close-contact" tabindex="0" aria-label="Fechar modal">&times;</span>
+      <h2>Enviar Interesses</h2>
+      <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Novo interesse - Shakaw 3D Print">
+        <input type="hidden" name="_autoresponse" value="Recebemos seu interesse! Entraremos em contato em breve.">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_next" value="https://shakaw3dprint.github.io/Shakaw_3D_Print/obrigado.html">
+        <input type="hidden" id="itemsData" name="items_data">
+        
+        <div class="form-section">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" required>
+          
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required>
+          
+          <label for="whatsapp">WhatsApp:</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
+        </div>
+        
+        <div class="form-section">
+          <h3>Resumo dos Itens Selecionados</h3>
+          <div id="selectedItemsSummary" class="items-summary"></div>
+        </div>
+        
+        <div class="form-section">
+          <label for="customMessage">Mensagem Adicional:</label>
+          <textarea id="customMessage" name="custom_message" rows="4" placeholder="Digite aqui qualquer informação adicional..."></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Enviar Interesses</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Elementos Flutuantes -->
+  <button id="backToTopBtn" title="Voltar ao topo" aria-label="Voltar ao topo">⬆️</button>
+  
+  <div id="interestPanel" class="interest-panel">
+    <h3>Lista de interesses</h3>
+    <ul id="interestList"></ul>
+    <button class="send-interests">Enviar Interesses</button>
+  </div>
   <!-- Scripts otimizados -->
   <script src="js/main.min.js" defer></script>
+
+  <button class="interest-btn" aria-label="Mostrar interesses">💚 Ver interesses</button>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js" type="module"></script>
   
+  <!-- Analytics (opcional) -->
   <!-- WebP fallback para navegadores antigos -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
+<script>
+    // Se necessário, adicione scripts de analytics aqui
+document.addEventListener('DOMContentLoaded', function() {
+      // Garante que o DOM está totalmente carregado
+      console.log('Catálogo Shakaw 3D Print carregado');
       if (!supportsWebP()) {
         convertToJpg('logo');
         convertToJpg('instagram-icon');
       }
-    });
+});
     
     function supportsWebP() {
       return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0;
@@ -61,6 +173,6 @@
         img.src = img.src.replace('.webp', '.jpg');
       });
     }
-  </script>
+</script>
 </body>
 </html>
