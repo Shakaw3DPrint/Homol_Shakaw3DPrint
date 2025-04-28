@@ -760,7 +760,7 @@
     // Função para criar um produto
     async function createProduct(i) {
       const index = i.toString().padStart(2, '0');
-      const mainImageUrl = `https://shakaw3dprint.github.io/Shakaw_3D_Print/assets/img/${index}.webp`;
+      const mainImageUrl = `https://shakaw3dprint.github.io/Shakaw_3D_Print/assets/img/produtos/${index}.webp`;
       
       return new Promise((resolve) => {
         checkImageExists(mainImageUrl, (exists) => {
@@ -819,7 +819,7 @@
 
           // Verifica e adiciona miniaturas adicionais
           for (let j = 1; j <= 5; j++) {
-            const thumbUrl = `https://shakaw3dprint.github.io/Shakaw_3D_Print/assets/img/${index}_${j}.webp`;
+            const thumbUrl = `https://shakaw3dprint.github.io/Shakaw_3D_Print/assets/img/produtos/${index}_${j}.webp`;
             
             checkImageExists(thumbUrl, function(exists) {
               if (exists) {
