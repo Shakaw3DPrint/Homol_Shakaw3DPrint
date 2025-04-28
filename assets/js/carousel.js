@@ -4,58 +4,58 @@ let carouselInterval;
 
 export function initCarousel() {
     const carousel = document.getElementById('carousel');
-    const indicators = document.getElementById('carouselIndicators');
-    
-    // Verifica se os elementos existem
+    const indicators = document.getElementById('carousel-indicators'); // corrigido o id
+
     if (!carousel || !indicators) {
         console.error('Elementos do carrossel não encontrados');
         return;
     }
 
-    // Limpa qualquer conteúdo existente
     carousel.innerHTML = '';
     indicators.innerHTML = '';
 
-    // Carrega imagens do carrossel com verificação
     const loadImage = (i) => {
         return new Promise((resolve) => {
             const imgUrl = `assets/img/carrossel/c_${i}.webp`;
             const img = new Image();
-            
+
             img.onload = () => {
                 const imgElement = document.createElement('img');
                 imgElement.src = imgUrl;
                 imgElement.alt = `Imagem ${i}`;
+                imgElement.loading = 'lazy'; // Lazy-loading adicionado
                 carousel.appendChild(imgElement);
                 carouselItems.push(imgElement);
-                
+
                 const indicator = document.createElement('div');
                 indicator.className = 'carousel-indicator';
-                indicator.addEventListener('click', () => goToSlide(i-1));
+                indicator.addEventListener('click', () => goToSlide(i - 1));
                 indicators.appendChild(indicator);
-                
+
                 resolve(true);
             };
-            
+
             img.onerror = () => {
                 console.warn(`Imagem não encontrada: ${imgUrl}`);
                 resolve(false);
             };
-            
+
             img.src = imgUrl;
         });
     };
 
-    // Carrega imagens sequencialmente
     const loadImages = async () => {
-        let loadedImages = 0;
-        
+        let consecutiveFails = 0;
+
         for (let i = 1; i <= 50; i++) {
             const loaded = await loadImage(i);
-            if (loaded) loadedImages++;
-            
-            // Se não encontrar 5 imagens seguidas, para o loop
-            if (i > 5 && loadedImages === 0) break;
+            if (!loaded) {
+                consecutiveFails++;
+            } else {
+                consecutiveFails = 0; // Resetar se encontrar imagem
+            }
+
+            if (consecutiveFails >= 5) break; // Parar após 5 imagens ausentes seguidas
         }
 
         if (carouselItems.length > 0) {
@@ -84,7 +84,6 @@ function setupCarouselEvents() {
     }
 }
 
-// Restante das funções permanece igual...
 function startCarousel() {
     if (carouselItems.length <= 1) return;
     clearInterval(carouselInterval);
@@ -111,7 +110,7 @@ function updateCarousel() {
     const carousel = document.getElementById('carousel');
     if (carousel) {
         carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
+
         document.querySelectorAll('.carousel-indicator').forEach((indicator, i) => {
             indicator.classList.toggle('active', i === currentSlide);
         });
