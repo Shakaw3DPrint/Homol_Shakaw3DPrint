@@ -109,7 +109,13 @@ function goToSlide(index) {
 function updateCarousel() {
     const carousel = document.getElementById('carousel');
     if (carousel) {
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        // Deixa todas as imagens invisíveis
+        carouselItems.forEach((img, i) => {
+            img.classList.toggle('active', i === currentSlide);
+        });
+
+        // Movimentação desativada para efeito só de fade
+        // carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
 
         document.querySelectorAll('.carousel-indicator').forEach((indicator, i) => {
             indicator.classList.toggle('active', i === currentSlide);
