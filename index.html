@@ -1125,6 +1125,25 @@
       interests.length = 0;
       updateInterestList();
     });
+    
+    // Adiciona controle de teclado para o zoom
+    document.addEventListener('keydown', function(event) {
+      const modal = document.getElementById('imgModal');
+      if (modal.style.display === 'block') { // Só funciona se o modal estiver aberto
+        switch(event.key) {
+          case '+':
+          case '=': // Tecla + (sem Shift)
+            zoomImage(0.2);
+            break;
+          case '-':
+            zoomImage(-0.2);
+            break;
+          case '0':
+            resetZoom();
+            break;
+        }
+      }
+    });
 
     // INICIALIZAÇÃO DA PÁGINA
     window.onload = function() {
