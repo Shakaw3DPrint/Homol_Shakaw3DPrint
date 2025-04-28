@@ -1,43 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shakaw 3D Print - Agradecemos pelo seu pedido!">
-  <title>Pedido Enviado | Shakaw 3D Print</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/confirmation.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obrigado pelo seu interesse | Shakaw 3D Print</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #0057b7, #06abff);
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    .logo {
+      width: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 20px;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .whatsapp-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .instagram-btn {
+      display: inline-block;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .instagram-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .back-btn {
+      display: inline-block;
+      background-color: #0077cc;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 30px;
+      transition: background-color 0.3s;
+    }
+    .back-btn:hover {
+      background-color: #005fa3;
+    }
+  </style>
 </head>
 <body>
-
   <div class="container">
-    <div class="confirmation-card">
-      <img src="assets/img/logo.webp" alt="Logo Shakaw 3D Print" class="logo" width="120" height="120">
+    <img src="https://shakaw67.github.io/Shakaw3DPrint/Logo.PNG" alt="Logo Shakaw 3D Print" class="logo">
+    <h1>Obrigado pelo seu interesse!</h1>
+    <p>Recebemos sua mensagem e entraremos em contato em breve com os detalhes sobre os produtos selecionados.</p>
+    <p>Enquanto isso, você pode nos contatar diretamente:</p>
+    
+    <div>
+      <a href="https://wa.me/5511954846647" class="whatsapp-btn" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp" style="width: 20px; vertical-align: middle; margin-right: 8px;">
+        Falar no WhatsApp
+      </a>
       
-      <div class="confirmation-message">
-        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2">
-          <path d="M20 6L9 17l-5-5"></path>
-        </svg>
-        <h1>Pedido Enviado!</h1>
-        <p>Recebemos seu pedido e entraremos em contato em breve.</p>
-      </div>
-
-      <div class="order-info">
-        <p><strong>Dica:</strong> Chame-nos pelo WhatsApp para agilizar!</p>
-      </div>
-
-      <div class="contact-buttons">
-        <a href="https://wa.me/5511999999999" class="btn whatsapp-btn" target="_blank">
-          WhatsApp
-        </a>
-        <a href="https://instagram.com/shakaw3dprint" class="btn instagram-btn" target="_blank">
-          Instagram
-        </a>
-      </div>
-
-      <a href="index.html" class="btn back-btn">Voltar para Início</a>
+      <a href="https://www.instagram.com/shakaw3dprint" class="instagram-btn" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; vertical-align: middle; margin-right: 8px;">
+        Ver no Instagram
+      </a>
     </div>
+    
+    <a href="https://shakaw67.github.io/Shakaw3DPrint/" class="back-btn">Voltar ao Catálogo</a>
   </div>
-
 </body>
 </html>
