@@ -4,67 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Catálogo Shakaw 3D Print</title>
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/carousel.css">
   <link rel="stylesheet" href="assets/css/modal.css">
   <link rel="stylesheet" href="assets/css/form.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
-  <div class="header">
-    <img src="assets/img/logo.png" alt="Logo Shakaw 3D Print">
-    <h1>Shakaw 3D Print</h1>
-    <div class="header-links">
-      <a href="https://www.instagram.com/shakaw3dprint" target="_blank">
-        <img src="assets/img/instagram-icon.png" alt="Instagram" class="icon">
+
+  <header class="header">
+    <div class="header-logo">
+      <img src="assets/img/logo.png" alt="Logo Shakaw 3D Print" class="logo">
+      <h1>Shakaw 3D Print</h1>
+    </div>
+    <nav class="header-links">
+      <a href="https://www.instagram.com/shakaw3dprint" target="_blank" class="social-link">
+        <img src="assets/img/instagram-icon.png" alt="Instagram" class="social-icon">
         @shakaw3dprint
       </a>
-      <a href="outros-projetos.html" target="_blank">Outros Projetos</a>
+      <a href="outros-projetos.html" target="_blank" class="nav-link">Outros Projetos</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Carrossel -->
+    <section class="carousel-container">
+      <div class="carousel" id="carousel"></div>
+      <button class="carousel-btn prev" aria-label="Anterior">❮</button>
+      <button class="carousel-btn next" aria-label="Próximo">❯</button>
+      <div class="carousel-indicators" id="carouselIndicators"></div>
+    </section>
+
+    <!-- Loader -->
+    <div class="loader" id="loader" aria-hidden="true"></div>
+
+    <!-- Catálogo -->
+    <section class="catalog-page" id="catalog"></section>
+
+    <!-- Modal de Imagem -->
+    <div id="imgModal" class="modal">
+      <span class="close" role="button" aria-label="Fechar">&times;</span>
+      <button class="modal-nav modal-prev" aria-label="Imagem anterior">❮</button>
+      <div class="modal-content">
+        <img id="modalImg" src="" alt="Imagem ampliada">
+      </div>
+      <button class="modal-nav modal-next" aria-label="Próxima imagem">❯</button>
+      <div class="zoom-controls">
+        <button class="zoom-in" aria-label="Zoom in">+</button>
+        <button class="zoom-out" aria-label="Zoom out">-</button>
+        <button class="zoom-reset" aria-label="Resetar zoom">Reset</button>
+      </div>
     </div>
-  </div>
 
-  <div class="carousel-container">
-    <div class="carousel" id="carousel"></div>
-    <button class="carousel-btn prev">❮</button>
-    <button class="carousel-btn next">❯</button>
-    <div class="carousel-indicators" id="carouselIndicators"></div>
-  </div>
-
-  <div class="loader" id="loader"></div>
-  <div class="catalog-page" id="catalog"></div>
-
-  <div id="imgModal" class="modal">
-    <span class="close">&times;</span>
-    <button class="modal-nav modal-prev">❮</button>
-    <div class="modal-content">
-      <img id="modalImg" src="" alt="Imagem ampliada">
+    <!-- Modal de Contato -->
+    <div id="contactModal" class="contact-modal">
+      <div class="contact-modal-content">
+        <span class="close-contact" role="button" aria-label="Fechar formulário">&times;</span>
+        <h2>Enviar Interesses</h2>
+        <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
+          <!-- Campos de formulário são gerados via JavaScript -->
+        </form>
+      </div>
     </div>
-    <button class="modal-nav modal-next">❯</button>
-    <div class="zoom-controls">
-      <button class="zoom-in">+</button>
-      <button class="zoom-out">-</button>
-      <button class="zoom-reset">Reset</button>
-    </div>
-  </div>
 
-  <div id="contactModal" class="contact-modal">
-    <div class="contact-modal-content">
-      <span class="close-contact">&times;</span>
-      <h2>Enviar Interesses</h2>
-      <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
-        <!-- Form fields here -->
-      </form>
-    </div>
-  </div>
+    <!-- Painel de interesses -->
+    <aside id="interestPanel">
+      <h3>Lista de Interesses</h3>
+      <ul id="interestList"></ul>
+      <button class="btn-primary send-interests">Enviar Interesses</button>
+    </aside>
 
-  <button id="backToTopBtn" title="Voltar ao topo">⬆️ Topo</button>
-  <div id="interestPanel">
-    <h3>Lista de interesses</h3>
-    <ul id="interestList"></ul>
-    <button class="send-interests">Enviar Interesses</button>
-  </div>
-  <button class="interest-btn">💚 Ver interesses</button>
+    <!-- Botão flutuante -->
+    <button class="interest-btn" title="Ver interesses">💚 Ver interesses</button>
 
+    <!-- Botão de voltar ao topo -->
+    <button id="backToTopBtn" title="Voltar ao topo">⬆️ Topo</button>
+  </main>
+
+  <!-- Scripts -->
   <script src="assets/js/main.js" type="module"></script>
+
 </body>
 </html>
