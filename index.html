@@ -1,62 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shakaw 3D Print - Confirmação de pedido de impressão 3D personalizada">
-  <title>Confirmação de Pedido | Shakaw 3D Print</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Catálogo Shakaw 3D Print</title>
   
-  <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/confirmation.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/carousel.css">
+  <link rel="stylesheet" href="assets/css/products.css">
 </head>
 <body>
-
-  <div class="container">
-    <!-- Card de Confirmação -->
-    <div class="confirmation-card">
-      <img src="assets/img/logo.webp" alt="Logo Shakaw 3D Print" class="logo" width="120" height="120">
-
-      <div class="confirmation-message">
-        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2">
-          <path d="M20 6L9 17l-5-5"></path>
-        </svg>
-        <h1>Pedido Confirmado!</h1>
-        <p>Entraremos em contato para confirmar os detalhes.</p>
-      </div>
-
-      <!-- Botões de Contato -->
-      <div class="contact-options">
-        <div class="contact-buttons">
-          <a href="https://wa.me/5511999999999" target="_blank" class="btn whatsapp-btn">
-            WhatsApp
-          </a>
-          <a href="https://instagram.com/shakaw3dprint" target="_blank" class="btn instagram-btn">
-            Instagram
-          </a>
-        </div>
-      </div>
-
-      <!-- Informações do Pedido -->
-      <div class="order-info">
-        <p><strong>Pedido:</strong> #12345</p>
-        <p><strong>Produto:</strong> Nome do Produto</p>
-      </div>
-
-      <a href="index.html" class="btn back-btn">Voltar para Início</a>
-    </div>
-
-    <!-- Carrossel (Fallback estático) -->
-    <div class="carousel-container">
-      <div id="carousel" class="carousel">
-        <img src="assets/img/placeholder-carousel.webp" alt="Projetos de Impressão 3D">
-      </div>
-      <button class="carousel-btn prev">&#10094;</button>
-      <button class="carousel-btn next">&#10095;</button>
+  <!-- Cabeçalho -->
+  <div class="header">
+    <img src="https://shakaw3dprint.github.io/Shakaw_3D_Print/uploads/logo.webp" alt="Logo">
+    <h1>Shakaw 3D Print</h1>
+    <div class="header-links">
+      <a href="https://www.instagram.com/shakaw3dprint" target="_blank">@shakaw3dprint</a>
+      <a href="outros-projetos.html" target="_blank">Outros Projetos</a>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script type="module" src="assets/js/carousel.js"></script>
+  <!-- Carrossel -->
+  <div class="carousel-container">
+    <div class="carousel" id="carousel"></div>
+    <button class="carousel-btn prev">❮</button>
+    <button class="carousel-btn next">❯</button>
+  </div>
+
+  <!-- Lista de Produtos -->
+  <div class="catalog-page" id="catalog"></div>
+
+  <!-- Modal de Imagem -->
+  <div id="imgModal" class="modal">...</div>
+
+  <!-- Modal de Contato -->
+  <div id="contactModal" class="contact-modal">...</div>
+
+  <!-- Botões Flutuantes -->
+  <button id="backToTopBtn">⬆️ Topo</button>
+  <button class="interest-btn">💚 Ver interesses</button>
+  <div id="interestPanel">...</div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/main.js" type="module"></script>
 </body>
 </html>
