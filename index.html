@@ -2,23 +2,23 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Confirmação de Pedido</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shakaw 3D Print - Confirmação de pedido de impressão 3D personalizada">
+  <title>Confirmação de Pedido | Shakaw 3D Print</title>
+  
   <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/confirmation.css">
-  <link rel="stylesheet" href="assets/css/carousel.css">
 </head>
 <body>
 
   <div class="container">
-
     <!-- Card de Confirmação -->
     <div class="confirmation-card">
-      <img src="assets/img/logo.webp" alt="Logo" class="logo" width="120" height="120">
+      <img src="assets/img/logo.webp" alt="Logo Shakaw 3D Print" class="logo" width="120" height="120">
 
       <div class="confirmation-message">
-        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2">
           <path d="M20 6L9 17l-5-5"></path>
         </svg>
         <h1>Pedido Confirmado!</h1>
@@ -28,8 +28,12 @@
       <!-- Botões de Contato -->
       <div class="contact-options">
         <div class="contact-buttons">
-          <a href="https://wa.me/SEUNUMERO" target="_blank" class="whatsapp-btn">WhatsApp</a>
-          <a href="https://instagram.com/SEUPERFIL" target="_blank" class="instagram-btn">Instagram</a>
+          <a href="https://wa.me/5511999999999" target="_blank" class="btn whatsapp-btn">
+            WhatsApp
+          </a>
+          <a href="https://instagram.com/shakaw3dprint" target="_blank" class="btn instagram-btn">
+            Instagram
+          </a>
         </div>
       </div>
 
@@ -37,30 +41,22 @@
       <div class="order-info">
         <p><strong>Pedido:</strong> #12345</p>
         <p><strong>Produto:</strong> Nome do Produto</p>
-        <p><strong>Quantidade:</strong> 1</p>
       </div>
 
-      <a href="index.html" class="back-btn">Voltar para Início</a>
+      <a href="index.html" class="btn back-btn">Voltar para Início</a>
     </div>
 
-    <!-- Carrossel -->
+    <!-- Carrossel (Fallback estático) -->
     <div class="carousel-container">
-      <div id="carousel" class="carousel"></div>
+      <div id="carousel" class="carousel">
+        <img src="assets/img/placeholder-carousel.webp" alt="Projetos de Impressão 3D">
+      </div>
       <button class="carousel-btn prev">&#10094;</button>
       <button class="carousel-btn next">&#10095;</button>
-      <div id="carouselIndicators" class="carousel-indicators"></div>
     </div>
-
   </div>
 
   <!-- Scripts -->
-  <script type="module">
-    import { initCarousel } from './assets/js/carousel.js';
-
-    window.addEventListener('DOMContentLoaded', () => {
-      initCarousel();
-    });
-  </script>
-
+  <script type="module" src="assets/js/carousel.js"></script>
 </body>
 </html>
