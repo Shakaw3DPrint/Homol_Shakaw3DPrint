@@ -1,3 +1,4 @@
+/* Estilo especial da página de confirmação */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -61,27 +62,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-.whatsapp-btn, .instagram-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.whatsapp-btn {
-  background-color: #25D366;
-  color: white;
-}
-
-.instagram-btn {
-  background: linear-gradient(45deg, #405DE6, #833AB4);
-  color: white;
-}
-
 .order-info {
   background: rgba(0, 0, 0, 0.2);
   padding: 1rem;
@@ -89,26 +69,14 @@ h1 {
   margin: 2rem 0;
 }
 
-.back-btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: #0077cc;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.back-btn:hover {
-  background: #005fa3;
-}
-
+/* Animação do check */
 @keyframes checkScale {
   0% { transform: scale(0); }
   80% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
 
+/* Responsividade */
 @media (max-width: 600px) {
   .confirmation-card {
     padding: 1.5rem;
