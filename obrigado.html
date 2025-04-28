@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Obrigado pelo seu interesse | Shakaw 3D Print</title>
-  <meta name="description" content="Agradecemos seu interesse em nossos produtos. Entraremos em contato em breve.">
-
-  <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/thankyou.css">
-  <link rel="icon" href="assets/img/favicon.png" type="image/png">
-  <meta name="theme-color" content="#00303f">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedido Enviado | Shakaw 3D Print</title>
+  <link rel="stylesheet" href="style.css"> <!-- estilo base do site -->
+  <link rel="stylesheet" href="thankyou.css"> <!-- estilo especial da página -->
 </head>
-
 <body>
 
-  <main class="container">
-    <section class="confirmation-card">
-      <img src="assets/img/logo.png" alt="Logo Shakaw 3D Print" class="logo" width="150" height="150">
+  <div class="container">
+    <div class="confirmation-card">
       
-      <h1>Obrigado pelo seu interesse!</h1>
+      <img src="logo.png" alt="Logo Shakaw 3D Print" class="logo" width="100" height="100">
       
+      <h1>Pedido enviado com sucesso!</h1>
+
       <div class="confirmation-message">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="#28a745" class="check-icon" aria-hidden="true">
-          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-        </svg>
-        <p>Recebemos sua mensagem e entraremos em contato em breve com os detalhes.</p>
-      </div>
-
-      <div class="contact-options">
-        <p>Você também pode nos contatar diretamente:</p>
-
-        <div class="contact-buttons">
-          <a href="https://wa.me/5511954846647" class="btn whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
-            <img src="assets/img/whatsapp-icon.png" alt="WhatsApp" width="20" height="20">
-            WhatsApp
-          </a>
-
-          <a href="https://www.instagram.com/shakaw3dprint" class="btn instagram-btn" target="_blank" rel="noopener noreferrer" aria-label="Contato via Instagram">
-            <img src="assets/img/instagram-icon.png" alt="Instagram" width="20" height="20">
-            Instagram
-          </a>
-        </div>
+        <img src="check-icon.png" alt="Ícone de Confirmação" class="check-icon" width="80" height="80">
+        <p>Recebemos seu pedido e entraremos em contato em breve.</p>
       </div>
 
       <div class="order-info">
-        <p><strong>Número de referência:</strong> <span id="referenceNumber"></span></p>
-        <p>Guarde este número para futuras consultas.</p>
+        <p><strong>Dica:</strong> Você pode nos chamar diretamente pelo WhatsApp ou Instagram se preferir agilizar o atendimento!</p>
       </div>
 
-      <a href="index.html" class="back-btn" aria-label="Voltar ao catálogo de produtos">
-        ← Voltar ao Catálogo
-      </a>
-    </section>
-  </main>
+      <div class="contact-buttons">
+        <a href="https://wa.me/seunumerodetelefone" class="btn-primary whatsapp-btn" target="_blank">
+          WhatsApp
+        </a>
+        <a href="https://instagram.com/seuperfil" class="btn-primary instagram-btn" target="_blank">
+          Instagram
+        </a>
+      </div>
 
-  <script>
-    // Gera um número de referência aleatório
-    document.addEventListener('DOMContentLoaded', function() {
-      const refNumber = 'SHA-' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-      document.getElementById('referenceNumber').textContent = refNumber;
-      localStorage.setItem('lastReference', refNumber);
-    });
-  </script>
+      <div style="margin-top: 2rem;">
+        <a href="index.html" class="btn-primary back-btn">Voltar para o início</a>
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>
