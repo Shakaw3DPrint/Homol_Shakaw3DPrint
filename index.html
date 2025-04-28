@@ -1,91 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Catálogo Shakaw 3D Print</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shakaw 3D Print</title>
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/carousel.css">
-  <link rel="stylesheet" href="assets/css/modal.css">
-  <link rel="stylesheet" href="assets/css/form.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
+  <!-- Estilos principais -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="carousel.css">
 
+  <!-- (Futuramente, se tiver favicon) -->
+  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
 <body>
 
+  <!-- Header -->
   <header class="header">
-    <div class="header-logo">
-      <img src="assets/img/logo.png" alt="Logo Shakaw 3D Print" class="logo">
-      <h1>Shakaw 3D Print</h1>
-    </div>
-    <nav class="header-links">
-      <a href="https://www.instagram.com/shakaw3dprint" target="_blank" class="social-link">
-        <img src="assets/img/instagram-icon.png" alt="Instagram" class="social-icon">
-        @shakaw3dprint
+    <img src="logo.png" alt="Logo Shakaw" class="logo">
+
+    <nav class="social-nav">
+      <a href="https://instagram.com/seu_perfil" target="_blank" class="social-link">
+        <img src="instagram-icon.svg" alt="Instagram" class="social-icon"> Instagram
       </a>
-      <a href="outros-projetos.html" target="_blank" class="nav-link">Outros Projetos</a>
+      <a href="https://wa.me/seu_numero" target="_blank" class="social-link" style="margin-left: 20px;">
+        <img src="whatsapp-icon.svg" alt="WhatsApp" class="social-icon"> WhatsApp
+      </a>
     </nav>
   </header>
 
-  <main>
+  <!-- Conteúdo Principal -->
+  <main class="main-content">
+
     <!-- Carrossel -->
     <section class="carousel-container">
-      <div class="carousel" id="carousel"></div>
-      <button class="carousel-btn prev" aria-label="Anterior">❮</button>
-      <button class="carousel-btn next" aria-label="Próximo">❯</button>
-      <div class="carousel-indicators" id="carouselIndicators"></div>
+      <div class="carousel" id="carousel">
+        <img src="imagem1.jpg" alt="Produto 1">
+        <img src="imagem2.jpg" alt="Produto 2">
+        <img src="imagem3.jpg" alt="Produto 3">
+      </div>
+      
+      <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+      <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+
+      <div class="carousel-indicators" id="carousel-indicators">
+        <!-- Pontinhos criados via JS -->
+      </div>
     </section>
 
-    <!-- Loader -->
-    <div class="loader" id="loader" aria-hidden="true"></div>
-
-    <!-- Catálogo -->
-    <section class="catalog-page" id="catalog"></section>
-
-    <!-- Modal de Imagem -->
-    <div id="imgModal" class="modal">
-      <span class="close" role="button" aria-label="Fechar">&times;</span>
-      <button class="modal-nav modal-prev" aria-label="Imagem anterior">❮</button>
-      <div class="modal-content">
-        <img id="modalImg" src="" alt="Imagem ampliada">
+    <!-- Produtos -->
+    <section class="products">
+      <h2>Produtos</h2>
+      <div class="product-grid">
+        <img src="produto1.jpg" alt="Produto 1">
+        <img src="produto2.jpg" alt="Produto 2">
+        <img src="produto3.jpg" alt="Produto 3">
+        <img src="produto4.jpg" alt="Produto 4">
+        <!-- Adicione mais se quiser -->
       </div>
-      <button class="modal-nav modal-next" aria-label="Próxima imagem">❯</button>
-      <div class="zoom-controls">
-        <button class="zoom-in" aria-label="Zoom in">+</button>
-        <button class="zoom-out" aria-label="Zoom out">-</button>
-        <button class="zoom-reset" aria-label="Resetar zoom">Reset</button>
-      </div>
-    </div>
+    </section>
 
-    <!-- Modal de Contato -->
-    <div id="contactModal" class="contact-modal">
-      <div class="contact-modal-content">
-        <span class="close-contact" role="button" aria-label="Fechar formulário">&times;</span>
-        <h2>Enviar Interesses</h2>
-        <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
-          <!-- Campos de formulário são gerados via JavaScript -->
-        </form>
-      </div>
-    </div>
+    <!-- Formulário de Interesse -->
+    <section class="interest-form">
+      <h2>Formulário de Interesse</h2>
+      <form action="obrigado.html" method="POST">
+        <input type="text" name="nome" placeholder="Seu Nome" required>
+        <input type="email" name="email" placeholder="Seu Email" required>
+        <textarea name="mensagem" rows="5" placeholder="Mensagem ou Produto de Interesse" required></textarea>
+        <button type="submit" class="btn-primary">Enviar Interesse</button>
+      </form>
+    </section>
 
-    <!-- Painel de interesses -->
-    <aside id="interestPanel">
-      <h3>Lista de Interesses</h3>
-      <ul id="interestList"></ul>
-      <button class="btn-primary send-interests">Enviar Interesses</button>
-    </aside>
-
-    <!-- Botão flutuante -->
-    <button class="interest-btn" title="Ver interesses">💚 Ver interesses</button>
-
-    <!-- Botão de voltar ao topo -->
-    <button id="backToTopBtn" title="Voltar ao topo">⬆️ Topo</button>
   </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 Shakaw 3D Print. Todos os direitos reservados.
+  </footer>
+
   <!-- Scripts -->
-  <script src="assets/js/main.js" type="module"></script>
+  <script src="carousel.js"></script>
 
 </body>
 </html>
