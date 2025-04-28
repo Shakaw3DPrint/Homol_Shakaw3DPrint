@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shakaw 3D Print</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Catálogo Shakaw 3D Print</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/carousel.css">
   <link rel="stylesheet" href="assets/css/modal.css">
@@ -11,52 +11,60 @@
   <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
-
-  <header class="header">
-    <img src="assets/img/logo.webp" alt="Logo Shakaw 3D Print" class="logo">
-    <nav class="social-nav">
-      <a href="https://www.instagram.com/shakaw3dprint" target="_blank" class="social-link">
-        <img src="assets/img/instagram-icon.png" alt="Instagram" class="social-icon">
-        <span>@shakaw3dprint</span>
+  <div class="header">
+    <img src="assets/img/logo.png" alt="Logo Shakaw 3D Print">
+    <h1>Shakaw 3D Print</h1>
+    <div class="header-links">
+      <a href="https://www.instagram.com/shakaw3dprint" target="_blank">
+        <img src="assets/img/instagram-icon.png" alt="Instagram" class="icon">
+        @shakaw3dprint
       </a>
-    </nav>
-  </header>
+      <a href="outros-projetos.html" target="_blank">Outros Projetos</a>
+    </div>
+  </div>
 
-  <main class="main-content">
-    <!-- Carrossel -->
-    <section class="carousel-container">
-      <!-- Carrossel será colocado aqui pelo carousel.js -->
-    </section>
+  <div class="carousel-container">
+    <div class="carousel" id="carousel"></div>
+    <button class="carousel-btn prev">❮</button>
+    <button class="carousel-btn next">❯</button>
+    <div class="carousel-indicators" id="carouselIndicators"></div>
+  </div>
 
-    <!-- Produtos -->
-    <section class="products">
-      <h2>Nossos Produtos</h2>
-      <div class="product-grid">
-        <!-- Produtos carregados dinamicamente pelo JS -->
-      </div>
-    </section>
+  <div class="loader" id="loader"></div>
+  <div class="catalog-page" id="catalog"></div>
 
-    <!-- Formulário de interesse -->
-    <section class="interest-form">
-      <h2>Registre seu Interesse</h2>
-      <form id="interestForm" method="POST">
-        <input type="text" name="name" placeholder="Seu nome" required>
-        <input type="email" name="email" placeholder="Seu e-mail" required>
-        <textarea name="message" placeholder="Mensagem ou interesse específico" required></textarea>
-        <button type="submit" class="btn-primary">Enviar Interesse</button>
+  <div id="imgModal" class="modal">
+    <span class="close">&times;</span>
+    <button class="modal-nav modal-prev">❮</button>
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="Imagem ampliada">
+    </div>
+    <button class="modal-nav modal-next">❯</button>
+    <div class="zoom-controls">
+      <button class="zoom-in">+</button>
+      <button class="zoom-out">-</button>
+      <button class="zoom-reset">Reset</button>
+    </div>
+  </div>
+
+  <div id="contactModal" class="contact-modal">
+    <div class="contact-modal-content">
+      <span class="close-contact">&times;</span>
+      <h2>Enviar Interesses</h2>
+      <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
+        <!-- Form fields here -->
       </form>
-    </section>
+    </div>
+  </div>
 
-  </main>
+  <button id="backToTopBtn" title="Voltar ao topo">⬆️ Topo</button>
+  <div id="interestPanel">
+    <h3>Lista de interesses</h3>
+    <ul id="interestList"></ul>
+    <button class="send-interests">Enviar Interesses</button>
+  </div>
+  <button class="interest-btn">💚 Ver interesses</button>
 
-  <footer class="footer">
-    <p>© 2025 Shakaw 3D Print - Todos os direitos reservados.</p>
-  </footer>
-
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/carousel.js"></script>
-  <script src="assets/js/modal.js"></script>
-  <script src="assets/js/form.js"></script>
-
+  <script src="assets/js/main.js" type="module"></script>
 </body>
 </html>
