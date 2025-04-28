@@ -3,82 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shakaw 3D Print</title>
+  <title>Confirmação de Pedido</title>
 
-  <!-- Estilos principais -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="carousel.css">
-
-  <!-- (Futuramente, se tiver favicon) -->
-  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/confirmation.css">
+  <link rel="stylesheet" href="assets/css/carousel.css">
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <img src="logo.png" alt="Logo Shakaw" class="logo">
+  <div class="container">
 
-    <nav class="social-nav">
-      <a href="https://instagram.com/seu_perfil" target="_blank" class="social-link">
-        <img src="instagram-icon.svg" alt="Instagram" class="social-icon"> Instagram
-      </a>
-      <a href="https://wa.me/seu_numero" target="_blank" class="social-link" style="margin-left: 20px;">
-        <img src="whatsapp-icon.svg" alt="WhatsApp" class="social-icon"> WhatsApp
-      </a>
-    </nav>
-  </header>
+    <!-- Card de Confirmação -->
+    <div class="confirmation-card">
+      <img src="assets/img/logo.webp" alt="Logo" class="logo" width="120" height="120">
 
-  <!-- Conteúdo Principal -->
-  <main class="main-content">
+      <div class="confirmation-message">
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17l-5-5"></path>
+        </svg>
+        <h1>Pedido Confirmado!</h1>
+        <p>Entraremos em contato para confirmar os detalhes.</p>
+      </div>
+
+      <!-- Botões de Contato -->
+      <div class="contact-options">
+        <div class="contact-buttons">
+          <a href="https://wa.me/SEUNUMERO" target="_blank" class="whatsapp-btn">WhatsApp</a>
+          <a href="https://instagram.com/SEUPERFIL" target="_blank" class="instagram-btn">Instagram</a>
+        </div>
+      </div>
+
+      <!-- Informações do Pedido -->
+      <div class="order-info">
+        <p><strong>Pedido:</strong> #12345</p>
+        <p><strong>Produto:</strong> Nome do Produto</p>
+        <p><strong>Quantidade:</strong> 1</p>
+      </div>
+
+      <a href="index.html" class="back-btn">Voltar para Início</a>
+    </div>
 
     <!-- Carrossel -->
-    <section class="carousel-container">
-      <div class="carousel" id="carousel">
-        <img src="imagem1.jpg" alt="Produto 1">
-        <img src="imagem2.jpg" alt="Produto 2">
-        <img src="imagem3.jpg" alt="Produto 3">
-      </div>
-      
-      <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
-      <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+    <div class="carousel-container">
+      <div id="carousel" class="carousel"></div>
+      <button class="carousel-btn prev">&#10094;</button>
+      <button class="carousel-btn next">&#10095;</button>
+      <div id="carouselIndicators" class="carousel-indicators"></div>
+    </div>
 
-      <div class="carousel-indicators" id="carousel-indicators">
-        <!-- Pontinhos criados via JS -->
-      </div>
-    </section>
-
-    <!-- Produtos -->
-    <section class="products">
-      <h2>Produtos</h2>
-      <div class="product-grid">
-        <img src="produto1.jpg" alt="Produto 1">
-        <img src="produto2.jpg" alt="Produto 2">
-        <img src="produto3.jpg" alt="Produto 3">
-        <img src="produto4.jpg" alt="Produto 4">
-        <!-- Adicione mais se quiser -->
-      </div>
-    </section>
-
-    <!-- Formulário de Interesse -->
-    <section class="interest-form">
-      <h2>Formulário de Interesse</h2>
-      <form action="obrigado.html" method="POST">
-        <input type="text" name="nome" placeholder="Seu Nome" required>
-        <input type="email" name="email" placeholder="Seu Email" required>
-        <textarea name="mensagem" rows="5" placeholder="Mensagem ou Produto de Interesse" required></textarea>
-        <button type="submit" class="btn-primary">Enviar Interesse</button>
-      </form>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    &copy; 2025 Shakaw 3D Print. Todos os direitos reservados.
-  </footer>
+  </div>
 
   <!-- Scripts -->
-  <script src="carousel.js"></script>
+  <script type="module">
+    import { initCarousel } from './assets/js/carousel.js';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initCarousel();
+    });
+  </script>
 
 </body>
 </html>
