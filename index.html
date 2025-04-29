@@ -510,6 +510,18 @@
 <body>
   <!-- CABEÇALHO -->
   <div class="header">
+    <!-- Formulário de captura de e-mail -->
+<div style="margin: 20px auto; max-width: 500px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px; text-align: center;">
+  <h3 style="color: white; margin-top: 0;">Receba atualizações de produtos</h3>
+  <form id="emailSignupForm" style="display: flex; gap: 10px; justify-content: center;">
+    <input type="email" id="newsletterEmail" placeholder="Seu melhor e-mail" required 
+           style="padding: 8px; border-radius: 5px; border: none; flex-grow: 1; max-width: 300px;">
+    <button type="submit" style="padding: 8px 15px; background: #0077cc; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Cadastrar
+    </button>
+  </form>
+  <p style="color: rgba(255,255,255,0.7); font-size: 12px; margin-bottom: 0;">Não enviaremos spam. Você pode cancelar a qualquer momento.</p>
+</div>
     <!-- LOGO -->
     <img src="https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/logo.webp" alt="Logo Shakaw 3D Print">
     <!-- TÍTULO PRINCIPAL -->
@@ -1173,6 +1185,53 @@
         btn.style.display = window.scrollY > 200 ? "block" : "none";
       };
     };
+    // Formulário de captura de e-mail
+document.getElementById('emailSignupForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // Impede o envio padrão do formulário
+  
+  const email = document.getElementById('newsletterEmail').value.trim();
+  
+  if (!email) {
+    alert('Por favor, insira um e-mail válido.');
+    return;
+  }
+  
+  // Aqui você pode adicionar o código para enviar o e-mail para seu servidor
+  // Por enquanto, vamos apenas armazenar localmente e mostrar uma mensagem
+  
+  // Armazena o e-mail no localStorage do navegador
+  let emails = JSON.parse(localStorage.getItem('newsletterEmails') || '[]');
+  if (!emails.includes(email)) {
+    emails.push(email);
+    localStorage.setItem('newsletterEmails', JSON.stringify(emails));
+  }
+  
+  // Mostra mensagem de sucesso
+  alert('Obrigado por se cadastrar! Você receberá nossas atualizações por e-mail.');
+  
+  // Limpa o campo
+  document.getElementById('newsletterEmail').value = '';
+});
+
+// Função para exportar a lista de e-mails (para você acessar os cadastrados)
+function exportEmailList() {
+  const emails = JSON.parse(localStorage.getItem('newsletterEmails') || [];
+  if (emails.length === 0) {
+    alert('Nenhum e-mail cadastrado ainda.');
+    return;
+  }
+  
+  // Cria um link para download do arquivo
+  const data = emails.join('\n');
+  const blob = new Blob([data], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'lista_emails_shakaw.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
   </script>
 </body>
 </html>
