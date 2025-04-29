@@ -1,527 +1,484 @@
 <!DOCTYPE html>
-<!-- 
-  Documento HTML5 
-  Idioma: Português Brasileiro (pt-BR)
--->
 <html lang="pt-BR">
 <head>
-  <!-- METADADOS -->
-  <meta charset="UTF-8" /> <!-- Codificação de caracteres UTF-8 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
-  <!-- Configuração de viewport para dispositivos móveis -->
-  <title>Shakaw 3D Print</title> <!-- Título da página exibido na aba do navegador -->
-
-  <!-- ESTILOS CSS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Shakaw 3D Print</title>
   <style>
-    /* ESTILOS GERAIS */
     body {
-      font-family: Arial, sans-serif; /* Fonte padrão */
-      margin: 0; /* Remove margens padrão */
-      background: #00303f; /* Cor de fundo azul petróleo */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #00303f;
     }
 
-    /* CABEÇALHO */
     .header {
-      text-align: center; /* Centraliza conteúdo */
-      padding: 40px 20px 20px; /* Espaçamento interno */
-      color: white; /* Cor do texto */
-      position: relative; /* Posicionamento relativo */
+      text-align: center;
+      padding: 40px 20px 20px;
+      color: white;
+      position: relative;
     }
     .header img {
-      width: 180px; /* Largura da logo */
-      border-radius: 50%; /* Torna a imagem redonda */
-      margin-bottom: 10px; /* Espaço abaixo da imagem */
-      border: 4px solid black; /* Borda preta */
+      width: 180px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 4px solid black;
     }
     .header h1 {
-      margin: 10px 0 5px; /* Margens do título */
-      font-size: 28px; /* Tamanho da fonte */
+      margin: 10px 0 5px;
+      font-size: 28px;
     }
     .header-links {
-      display: flex; /* Layout flexível */
-      justify-content: center; /* Centraliza horizontalmente */
-      gap: 15px; /* Espaço entre elementos */
-      margin-top: 15px; /* Espaço acima */
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
     }
     .header a {
-      display: inline-block; /* Exibição em linha */
-      color: white; /* Cor do texto */
-      font-weight: bold; /* Texto em negrito */
-      text-decoration: none; /* Remove sublinhado */
-      background: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
-      padding: 6px 12px; /* Espaçamento interno */
-      border-radius: 20px; /* Bordas arredondadas */
-      transition: background 0.3s; /* Transição suave */
+      display: inline-block;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: background 0.3s;
     }
     .header a:hover {
-      background: rgba(255, 255, 255, 0.25); /* Efeito hover */
+      background: rgba(255, 255, 255, 0.25);
     }
     
-    /* CARROSSEL DE IMAGENS */
     .carousel-container {
-      max-width: 1000px; /* Largura máxima */
-      margin: 30px auto; /* Centraliza horizontalmente */
-      position: relative; /* Posicionamento relativo */
-      overflow: hidden; /* Esconde conteúdo que ultrapassa */
-      border-radius: 10px; /* Bordas arredondadas */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra */
-      height: 400px; /* Altura fixa */
-      background: #00303f; /* Cor de fundo */
+      max-width: 1000px;
+      margin: 30px auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      height: 400px;
+      background: #00303f;
     }
     .carousel {
-      display: flex; /* Layout flexível */
-      transition: transform 0.5s ease-in-out; /* Transição suave */
-      height: 100%; /* Altura completa */
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
     }
     .carousel img {
-      width: 100%; /* Largura completa */
-      height: 100%; /* Altura completa */
-      object-fit: contain; /* Mantém proporção */
-      background-color: #00303f; /* Cor de fundo */
-      flex-shrink: 0; /* Impede redução */
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #00303f;
+      flex-shrink: 0;
     }
     .carousel-btn {
-      position: absolute; /* Posicionamento absoluto */
-      top: 50%; /* Alinha verticalmente */
-      transform: translateY(-50%); /* Ajuste fino */
-      background: rgba(0,0,0,0.5); /* Fundo semi-transparente */
-      color: white; /* Cor do texto */
-      border: none; /* Sem borda */
-      padding: 15px; /* Espaçamento interno */
-      cursor: pointer; /* Cursor de ponteiro */
-      z-index: 10; /* Camada superior */
-      border-radius: 50%; /* Forma circular */
-      font-size: 18px; /* Tamanho da fonte */
-      transition: background 0.3s, opacity 0.3s; /* Adicione opacity na transição */
-}
-
-.carousel-btn:hover {
-  background: rgba(0,0,0,0.8);
-  opacity: 0.9; /* Efeito de escurecer */
-}
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+      font-size: 18px;
+      transition: background 0.3s, opacity 0.3s;
+    }
+    .carousel-btn:hover {
+      background: rgba(0,0,0,0.8);
+      opacity: 0.9;
+    }
     .carousel-btn.prev {
-      left: 10px; /* Posição à esquerda */
+      left: 10px;
     }
     .carousel-btn.next {
-      right: 10px; /* Posição à direita */
+      right: 10px;
     }
     .carousel-indicators {
-      position: absolute; /* Posicionamento absoluto */
-      bottom: 20px; /* Posição na base */
-      left: 0; /* Alinhamento à esquerda */
-      right: 0; /* Alinhamento à direita */
-      display: flex; /* Layout flexível */
-      justify-content: center; /* Centraliza horizontalmente */
-      gap: 8px; /* Espaço entre elementos */
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
     }
     .carousel-indicator {
-      width: 12px; /* Largura */
-      height: 12px; /* Altura */
-      border-radius: 50%; /* Forma circular */
-      background: rgba(255,255,255,0.5); /* Cor semi-transparente */
-      cursor: pointer; /* Cursor de ponteiro */
-      transition: background 0.3s; /* Transição suave */
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.3s;
     }
     .carousel-indicator.active {
-      background: white; /* Cor quando ativo */
+      background: white;
     }
     
-    /* CATÁLOGO DE PRODUTOS */
     .catalog-page {
-      display: flex; /* Layout flexível */
-      flex-direction: column; /* Direção vertical */
-      gap: 30px; /* Espaço entre produtos */
-      max-width: 1000px; /* Largura máxima */
-      margin: 40px auto; /* Centraliza horizontalmente */
-      padding: 0 20px; /* Espaçamento lateral */
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
     .product {
-      display: flex; /* Layout flexível */
-      flex-direction: row; /* Direção horizontal */
-      background-color: #fff; /* Fundo branco */
-      border: 1px solid #ddd; /* Borda sutil */
-      border-radius: 10px; /* Bordas arredondadas */
-      overflow: hidden; /* Esconde conteúdo que ultrapassa */
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra sutil */
+      display: flex;
+      flex-direction: row;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .image-column {
-      display: flex; /* Layout flexível */
-      flex-direction: column; /* Direção vertical */
-      align-items: center; /* Centraliza horizontalmente */
-      padding: 20px; /* Espaçamento interno */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
     .main-img {
-      width: 300px; /* Largura fixa */
-      height: 300px; /* Altura fixa */
-      object-fit: contain; /* Mantém proporção */
-      background-color: #f5f5f5; /* Fundo cinza claro */
-      padding: 10px; /* Espaçamento interno */
-      cursor: pointer; /* Cursor de ponteiro */
-      transition: transform 0.2s; /* Transição suave */
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      background-color: #f5f5f5;
+      padding: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
     .main-img:hover {
-      transform: scale(1.02); /* Efeito de zoom no hover */
+      transform: scale(1.02);
     }
     .thumbnail-container {
-      display: flex; /* Layout flexível */
-      gap: 5px; /* Espaço entre miniaturas */
-      margin-top: 10px; /* Espaço acima */
-      flex-wrap: wrap; /* Quebra de linha */
-      justify-content: flex-start; /* Alinhamento à esquerda */
+      display: flex;
+      gap: 5px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
     }
     .thumbnail-container:empty::after {
-      content: "Sem miniaturas adicionais"; /* Mensagem quando vazio */
-      color: #999; /* Cor do texto */
-      font-size: 12px; /* Tamanho da fonte */
-      padding: 10px; /* Espaçamento interno */
-      text-align: center; /* Centraliza texto */
-      display: block; /* Exibição em bloco */
+      content: "Sem miniaturas adicionais";
+      color: #999;
+      font-size: 12px;
+      padding: 10px;
+      text-align: center;
+      display: block;
     }
     .thumbnail-container img {
-      width: 50px; /* Largura fixa */
-      height: 50px; /* Altura fixa */
-      object-fit: cover; /* Preenche espaço */
-      border: 1px solid #ccc; /* Borda sutil */
-      cursor: pointer; /* Cursor de ponteiro */
-      border-radius: 4px; /* Bordas levemente arredondadas */
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-radius: 4px;
     }
     .thumbnail-container img:hover {
-      border-color: #0077cc; /* Cor da borda no hover */
+      border-color: #0077cc;
     }
     .product-details {
-      padding: 60px 20px 20px 20px; /* Espaçamento interno */
-      flex: 1; /* Ocupa espaço restante */
+      padding: 60px 20px 20px 20px;
+      flex: 1;
     }
     .product-details h2 {
-      margin: 0 0 10px; /* Margens do título */
-      font-size: 20px; /* Tamanho da fonte */
+      margin: 0 0 10px;
+      font-size: 20px;
     }
     .product-details p {
-      margin: 5px 0; /* Margens do parágrafo */
-      color: #333; /* Cor do texto */
+      margin: 5px 0;
+      color: #333;
     }
     .price {
-      margin-top: 10px; /* Espaço acima */
-      font-weight: bold; /* Texto em negrito */
-      color: #009688; /* Cor verde-água */
+      margin-top: 10px;
+      font-weight: bold;
+      color: #009688;
     }
     
-    /* MODAL DE IMAGEM AMPLIADA */
     .modal {
-      display: none; /* Escondido por padrão */
-      position: fixed; /* Posição fixa na tela */
-      z-index: 9999; /* Camada superior */
-      left: 0; /* Alinhamento à esquerda */
-      top: 0; /* Alinhamento ao topo */
-      width: 100%; /* Largura completa */
-      height: 100%; /* Altura completa */
-      overflow: auto; /* Barra de rolagem se necessário */
-      background-color: rgba(0,0,0,0.9); /* Fundo escuro semi-transparente */
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
     }
     .modal-content {
-      position: relative; /* Posicionamento relativo */
-      margin: auto; /* Centraliza horizontalmente */
-      display: block; /* Exibição em bloco */
-      max-width: 90%; /* Largura máxima */
-      max-height: 90vh; /* Altura máxima */
-      text-align: center; /* Centraliza conteúdo */
+      position: relative;
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90vh;
+      text-align: center;
     }
     .modal-content img {
-      max-width: 100%; /* Largura máxima */
-      max-height: 80vh; /* Altura máxima */
-      object-fit: contain; /* Mantém proporção */
-      background-color: #00303f; /* Cor de fundo */
-      transform-origin: center center; /* Ponto de origem para zoom */
-      transition: transform 0.3s ease; /* Transição suave */
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      background-color: #00303f;
+      transform-origin: center center;
+      transition: transform 0.3s ease;
     }
     .close {
-      position: absolute; /* Posicionamento absoluto */
-      top: 20px; /* Distância do topo */
-      right: 35px; /* Distância da direita */
-      color: white; /* Cor do texto */
-      font-size: 40px; /* Tamanho da fonte */
-      font-weight: bold; /* Texto em negrito */
-      cursor: pointer; /* Cursor de ponteiro */
-      z-index: 100; /* Camada superior */
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 100;
     }
     .modal-nav {
-      position: absolute; /* Posicionamento absoluto */
-      top: 50%; /* Alinha verticalmente */
-      transform: translateY(-50%); /* Ajuste fino */
-      background: rgba(0,0,0,0.5); /* Fundo semi-transparente */
-      color: white; /* Cor do texto */
-      border: none; /* Sem borda */
-      padding: 15px; /* Espaçamento interno */
-      cursor: pointer; /* Cursor de ponteiro */
-      z-index: 10; /* Camada superior */
-      border-radius: 50%; /* Forma circular */
-      font-size: 18px; /* Tamanho da fonte */
-      transition: background 0.3s, opacity 0.3s; /* Adicione opacity */
-}
-
-.modal-nav:hover {
-  background: rgba(0,0,0,0.8);
-  opacity: 0.9;
-}
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+      font-size: 18px;
+      transition: background 0.3s, opacity 0.3s;
+    }
+    .modal-nav:hover {
+      background: rgba(0,0,0,0.8);
+      opacity: 0.9;
+    }
     .modal-prev {
-      left: 20px; /* Posição à esquerda */
+      left: 20px;
     }
     .modal-next {
-      right: 20px; /* Posição à direita */
+      right: 20px;
     }
     
-    /* CONTROLES DE ZOOM */
     .zoom-controls {
-      position: fixed; /* Posição fixa na tela */
-      bottom: 20px; /* Distância da base */
-      left: 50%; /* Alinha horizontalmente */
-      transform: translateX(-50%); /* Centraliza precisamente */
-      background: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
-      padding: 10px; /* Espaçamento interno */
-      border-radius: 5px; /* Bordas arredondadas */
-      display: flex; /* Layout flexível */
-      gap: 5px; /* Espaço entre botões */
-      z-index: 10000; /* Camada superior */
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      gap: 5px;
+      z-index: 10000;
     }
     .zoom-controls button {
-      background: #fff; /* Fundo branco */
-      border: none; /* Sem borda */
-      border-radius: 3px; /* Bordas levemente arredondadas */
-      padding: 5px 10px; /* Espaçamento interno */
-      cursor: pointer; /* Cursor de ponteiro */
-      font-weight: bold; /* Texto em negrito */
-    transition: background 0.3s, transform 0.2s; /* Adicione transform */
-}
-
-.zoom-controls button:hover {
-  background: #ddd; /* Cor mais clara */
-  transform: scale(1.05); /* Pequeno efeito de crescimento */
-}
+      background: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .zoom-controls button:hover {
+      background: #ddd;
+      transform: scale(1.05);
+    }
     
-    /* RESPONSIVIDADE - TELAS MENORES QUE 768px */
     @media (max-width: 768px) {
       .product {
-        flex-direction: column; /* Empilha elementos verticalmente */
-        align-items: center; /* Centraliza horizontalmente */
+        flex-direction: column;
+        align-items: center;
       }
       .product-details {
-        max-width: 100%; /* Largura completa */
+        max-width: 100%;
       }
       .carousel-container {
-        height: 250px; /* Altura reduzida */
+        height: 250px;
       }
       .modal-nav {
-        padding: 10px; /* Espaçamento menor */
-        font-size: 16px; /* Fonte menor */
+        padding: 10px;
+        font-size: 16px;
       }
       .zoom-controls {
-        bottom: 10px; /* Posição mais próxima da base */
+        bottom: 10px;
       }
     }
 
-    /* BOTÃO "VOLTAR AO TOPO" */
     #backToTopBtn {
-      position: fixed; /* Posição fixa na tela */
-      bottom: 30px; /* Distância da base */
-      right: 30px; /* Distância da direita */
-      z-index: 1000; /* Camada superior */
-      background-color: #0077cc; /* Cor azul */
-      color: white; /* Cor do texto */
-      border: none; /* Sem borda */
-      padding: 12px 18px; /* Espaçamento interno */
-      border-radius: 30px; /* Bordas muito arredondadas */
-      font-size: 14px; /* Tamanho da fonte */
-      cursor: pointer; /* Cursor de ponteiro */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra */
-      display: none; /* Escondido por padrão */
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none;
     }
     #backToTopBtn:hover {
-      background-color: #005fa3; /* Efeito hover */
+      background-color: #005fa3;
     }
     
-    /* PAINEL DE INTERESSES */
     #interestPanel {
-      display: none; /* Escondido por padrão */
-      position: fixed; /* Posição fixa na tela */
-      right: 30px; /* Distância da direita */
-      bottom: 80px; /* Distância da base */
-      background: white; /* Fundo branco */
-      padding: 20px; /* Espaçamento interno */
-      border-radius: 10px; /* Bordas arredondadas */
-      max-width: 300px; /* Largura máxima */
-      box-shadow: 0 0 15px rgba(0,0,0,0.3); /* Sombra */
-      z-index: 1001; /* Camada superior */
+      display: none;
+      position: fixed;
+      right: 30px;
+      bottom: 80px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 300px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      z-index: 1001;
     }
     
-    /* LISTA DE INTERESSES */
     #interestList {
-      list-style: none; /* Remove marcadores */
-      padding: 0; /* Remove padding padrão */
-      max-height: 300px; /* Altura máxima */
-      overflow-y: auto; /* Barra de rolagem vertical se necessário */
+      list-style: none;
+      padding: 0;
+      max-height: 300px;
+      overflow-y: auto;
     }
     
-    /* BOTÃO DE INTERESSES */
     .interest-btn {
-      position: fixed; /* Posição fixa na tela */
-      bottom: 30px; /* Distância da base */
-      left: 30px; /* Distância da esquerda */
-      z-index: 1000; /* Camada superior */
-      background-color: #28a745; /* Cor verde */
-      color: white; /* Cor do texto */
-      border: none; /* Sem borda */
-      padding: 12px 18px; /* Espaçamento interno */
-      border-radius: 30px; /* Bordas muito arredondadas */
-      font-size: 14px; /* Tamanho da fonte */
-      cursor: pointer; /* Cursor de ponteiro */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra */
-   transition: background 0.3s, transform 0.2s;
-}
-
-.interest-btn:hover {
-  background: #218838; /* Verde mais escuro */
-  transform: scale(1.05);
-}
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 1000;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .interest-btn:hover {
+      background: #218838;
+      transform: scale(1.05);
+    }
     
-    /* MODAL DE CONTATO */
     .contact-modal {
-      display: none; /* Escondido por padrão */
-      position: fixed; /* Posição fixa na tela */
-      z-index: 9999; /* Camada superior */
-      left: 0; /* Alinhamento à esquerda */
-      top: 0; /* Alinhamento ao topo */
-      width: 100%; /* Largura completa */
-      height: 100%; /* Altura completa */
-      background-color: rgba(0,0,0,0.7); /* Fundo escuro semi-transparente */
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
     }
     
-    /* CONTEÚDO DO MODAL DE CONTATO */
     .contact-modal-content {
-      background-color: #fefefe; /* Fundo branco */
-      margin: 10% auto; /* Centraliza verticalmente */
-      padding: 20px; /* Espaçamento interno */
-      border-radius: 10px; /* Bordas arredondadas */
-      width: 80%; /* Largura relativa */
-      max-width: 500px; /* Largura máxima */
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
     }
     
-    /* TÍTULO DO MODAL DE CONTATO */
     .contact-modal-content h2 {
-      margin-top: 0; /* Remove margem superior */
-      color: #0057b7; /* Cor azul */
+      margin-top: 0;
+      color: #0057b7;
     }
     
-    /* RÓTULOS DO FORMULÁRIO */
     .contact-modal-content label {
-      display: block; /* Exibição em bloco */
-      margin: 10px 0 5px; /* Margens */
+      display: block;
+      margin: 10px 0 5px;
     }
     
-    /* CAMPOS DO FORMULÁRIO */
     .contact-modal-content input,
     .contact-modal-content textarea {
-      width: 100%; /* Largura completa */
-      padding: 8px; /* Espaçamento interno */
-      border: 1px solid #ddd; /* Borda sutil */
-      border-radius: 4px; /* Bordas levemente arredondadas */
-      box-sizing: border-box; /* Modelo de caixa */
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
     
-    /* BOTÃO DO FORMULÁRIO */
     .contact-modal-content button {
-      background-color: #0057b7; /* Cor azul */
-      color: white; /* Cor do texto */
-      border: none; /* Sem borda */
-      padding: 10px 15px; /* Espaçamento interno */
-      margin-top: 10px; /* Espaço acima */
-      border-radius: 4px; /* Bordas levemente arredondadas */
-      cursor: pointer; /* Cursor de ponteiro */
+      background-color: #0057b7;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border-radius: 4px;
+      cursor: pointer;
       transition: background 0.3s, transform 0.2s;
-}
-
-.contact-modal-content button:hover {
-  background: #004494;
-  transform: scale(1.02);
-}
+    }
+    .contact-modal-content button:hover {
+      background: #004494;
+      transform: scale(1.02);
+    }
     
-    /* BOTÃO FECHAR */
     .close-contact {
-      float: right; /* Alinha à direita */
-      font-size: 24px; /* Tamanho da fonte */
-      font-weight: bold; /* Texto em negrito */
-      cursor: pointer; /* Cursor de ponteiro */
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
     }
     
-    /* SEÇÕES DO FORMULÁRIO */
     .form-section {
-      margin-bottom: 20px; /* Espaço abaixo */
-      padding: 15px; /* Espaçamento interno */
-      background-color: #f8f9fa; /* Fundo cinza claro */
-      border-radius: 5px; /* Bordas levemente arredondadas */
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
     }
     
-    /* RESUMO DOS ITENS SELECIONADOS */
     .items-summary {
-      max-height: 200px; /* Altura máxima */
-      overflow-y: auto; /* Barra de rolagem vertical se necessário */
-      padding: 10px; /* Espaçamento interno */
-      background-color: white; /* Fundo branco */
-      border: 1px solid #ddd; /* Borda sutil */
-      border-radius: 4px; /* Bordas levemente arredondadas */
-      margin-bottom: 10px; /* Espaço abaixo */
+      max-height: 200px;
+      overflow-y: auto;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
     }
     
-    /* ITENS DO RESUMO */
     .items-summary div {
-      padding: 8px; /* Espaçamento interno */
-      border-bottom: 1px solid #eee; /* Divisor sutil */
+      padding: 8px;
+      border-bottom: 1px solid #eee;
     }
     
-    /* ÚLTIMO ITEM DO RESUMO */
     .items-summary div:last-child {
-      border-bottom: none; /* Remove divisor */
+      border-bottom: none;
     }
     
-    /* TEXTO EM NEGRITO NO RESUMO */
     .items-summary strong {
-      display: inline-block; /* Exibição em linha */
-      min-width: 50px; /* Largura mínima */
+      display: inline-block;
+      min-width: 50px;
     }
     
-    /* ANIMAÇÃO DE CARREGAMENTO */
     .loader {
-      border: 5px solid #f3f3f3; /* Borda cinza claro */
-      border-top: 5px solid #0057b7; /* Borda superior azul */
-      border-radius: 50%; /* Forma circular */
-      width: 50px; /* Largura */
-      height: 50px; /* Altura */
-      animation: spin 1s linear infinite; /* Animação de rotação */
-      margin: 20px auto; /* Centraliza */
-      display: none; /* Escondido por padrão */
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #0057b7;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      display: none;
     }
     
-    /* ANIMAÇÃO DE ROTAÇÃO */
     @keyframes spin {
-      0% { transform: rotate(0deg); } /* Início */
-      100% { transform: rotate(360deg); } /* Fim */
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
   <!-- CABEÇALHO -->
   <div class="header">
-        <!-- LOGO -->
     <img src="https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/logo.webp" alt="Logo Shakaw 3D Print">
-    <!-- TÍTULO PRINCIPAL -->
     <h1>Shakaw 3D Print</h1>
-    <!-- LINKS DO CABEÇALHO -->
     <div class="header-links">
-      <!-- LINK PARA INSTAGRAM -->
       <a href="https://www.instagram.com/shakaw3dprint" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 20px; vertical-align: middle; margin-right: 6px;">
         @shakaw3dprint
       </a>
-      <!-- LINK PARA OUTROS PROJETOS -->
       <a href="outros-projetos.html" target="_blank">
         Outros Projetos
       </a>
@@ -530,83 +487,70 @@
 
   <!-- CARROSSEL DE IMAGENS -->
   <div class="carousel-container">
-    <!-- CONTÊINER DO CARROSSEL (IMAGENS SÃO INSERIDAS VIA JAVASCRIPT) -->
     <div class="carousel" id="carousel"></div>
-    <!-- BOTÃO ANTERIOR -->
     <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
-    <!-- BOTÃO PRÓXIMO -->
     <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
-    <!-- INDICADORES (PONTOS DE NAVEGAÇÃO) -->
     <div class="carousel-indicators" id="carouselIndicators"></div>
   </div>
 
   <!-- INDICADOR DE CARREGAMENTO -->
   <div class="loader" id="loader"></div>
 
-  <!-- ÁREA PRINCIPAL DO CATÁLOGO (PRODUTOS SÃO INSERIDOS VIA JAVASCRIPT) -->
+  <!-- ÁREA PRINCIPAL DO CATÁLOGO -->
   <div class="catalog-page" id="catalog"></div>
 
   <!-- MODAL PARA IMAGENS AMPLIADAS -->
   <div id="imgModal" class="modal">
-    <!-- BOTÃO FECHAR -->
     <span class="close" onclick="closeModal()">&times;</span>
-    <!-- BOTÃO IMAGEM ANTERIOR -->
     <button class="modal-nav modal-prev" onclick="navigateModal(-1)">❮</button>
-    <!-- CONTEÚDO DO MODAL -->
     <div class="modal-content">
-      <!-- IMAGEM AMPLIADA (FONTE DINÂMICA) -->
       <img id="modalImg" src="" alt="Imagem ampliada">
     </div>
-    <!-- BOTÃO PRÓXIMA IMAGEM -->
     <button class="modal-nav modal-next" onclick="navigateModal(1)">❯</button>
-    <!-- CONTROLES DE ZOOM -->
     <div class="zoom-controls">
-      <button onclick="zoomImage(0.2)">+</button> <!-- AUMENTAR ZOOM -->
-      <button onclick="zoomImage(-0.2)">-</button> <!-- DIMINUIR ZOOM -->
-      <button onclick="resetZoom()">Reset</button> <!-- RESETAR ZOOM -->
+      <button onclick="zoomImage(0.2)">+</button>
+      <button onclick="zoomImage(-0.2)">-</button>
+      <button onclick="resetZoom()">Reset</button>
     </div>
   </div>
 
   <!-- MODAL PARA FORMULÁRIO DE CONTATO -->
-<div id="contactModal" class="contact-modal">
-  <div class="contact-modal-content">
-    <!-- BOTÃO FECHAR -->
-    <span class="close-contact" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
-    <!-- TÍTULO -->
-    <h2>Enviar Interesses</h2>
-    <!-- FORMULÁRIO DE CONTATO -->
-    <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Novo interesse - Shakaw 3D Print">
-      <input type="hidden" name="_autoresponse" value="Recebemos seu interesse! Entraremos em contato em breve.">
-      <input type="hidden" name="_template" value="box">
-      <input type="hidden" name="_next" value="https://shakaw67.github.io/Homol_Shakaw3DPrint//obrigado.html">
-      <input type="hidden" id="itemsData" name="items_data">
-      
-      <div class="form-section">
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" required>
+  <div id="contactModal" class="contact-modal">
+    <div class="contact-modal-content">
+      <span class="close-contact" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
+      <h2>Enviar Interesses</h2>
+      <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Novo interesse - Shakaw 3D Print">
+        <input type="hidden" name="_autoresponse" value="Recebemos seu interesse! Entraremos em contato em breve.">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_next" value="https://shakaw67.github.io/Homol_Shakaw3DPrint//obrigado.html">
+        <input type="hidden" id="itemsData" name="items_data">
         
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
+        <div class="form-section">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" required>
+          
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required>
+          
+          <label for="whatsapp">WhatsApp:</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
+        </div>
         
-        <label for="whatsapp">WhatsApp:</label>
-        <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
-      </div>
-      
-      <div class="form-section">
-        <h3>Resumo dos Itens Selecionados</h3>
-        <div id="selectedItemsSummary" class="items-summary"></div>
-      </div>
-      
-      <div class="form-section">
-        <label for="customMessage">Mensagem Adicional:</label>
-        <textarea id="customMessage" name="custom_message" rows="4" placeholder="Digite aqui qualquer informação adicional..."></textarea>
-      </div>
-      
-      <button type="submit">Enviar Interesses</button>
-    </form>
+        <div class="form-section">
+          <h3>Resumo dos Itens Selecionados</h3>
+          <div id="selectedItemsSummary" class="items-summary"></div>
+        </div>
+        
+        <div class="form-section">
+          <label for="customMessage">Mensagem Adicional:</label>
+          <textarea id="customMessage" name="custom_message" rows="4" placeholder="Digite aqui qualquer informação adicional..."></textarea>
+        </div>
+        
+        <button type="submit">Enviar Interesses</button>
+      </form>
+    </div>
   </div>
-</div>
 
   <!-- BOTÃO "VOLTAR AO TOPO" -->
   <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTopBtn" title="Voltar ao topo">⬆️ Topo</button>
@@ -614,9 +558,7 @@
   <!-- PAINEL DE INTERESSES -->
   <div id="interestPanel">
     <h3>Lista de interesses</h3>
-    <!-- LISTA DE ITENS DE INTERESSE (PREENCHIDA VIA JAVASCRIPT) -->
     <ul id="interestList"></ul>
-    <!-- BOTÃO PARA ABRIR FORMULÁRIO -->
     <button onclick="showContactModal()" style="margin-top: 10px; padding: 8px 12px; background: #0077cc; color: white; border: none; border-radius: 5px; cursor: pointer;">Enviar Interesses</button>
   </div>
 
@@ -626,17 +568,17 @@
   <!-- SCRIPT JAVASCRIPT -->
   <script>
     // VARIÁVEIS GLOBAIS
-    const catalog = document.getElementById("catalog"); // Referência ao catálogo
-    const loader = document.getElementById("loader"); // Referência ao loader
-    const interests = []; // Array para armazenar itens de interesse
-    let currentSlide = 0; // Slide atual do carrossel
-    let carouselItems = []; // Array de itens do carrossel
-    let carouselInterval; // Referência ao intervalo do carrossel
-    let currentModalImageIndex = 0; // Índice da imagem atual no modal
-    let modalImages = []; // Array de imagens no modal
-    let currentZoom = 1; // Nível atual de zoom
+    const catalog = document.getElementById("catalog");
+    const loader = document.getElementById("loader");
+    const interests = [];
+    let currentSlide = 0;
+    let carouselItems = [];
+    let carouselInterval;
+    let currentModalImageIndex = 0;
+    let modalImages = [];
+    let currentZoom = 1;
 
-    // OBJETO COM PREÇOS ESPECIAIS (MAPEIA CÓDIGOS PARA PREÇOS)
+    // PREÇOS E DESCRIÇÕES
     const precosEspeciais = {
       44: 'R$ 45,00',
       45: 'R$ 45,00',
@@ -646,54 +588,41 @@
       60: 'R$ 90,00'
     };
 
-    // OBJETO COM DESCRIÇÕES ESPECIAIS (MAPEIA CÓDIGOS PARA DESCRIÇÕES)
     const descricoesEspeciais = {
-      01: 'Modelo + Esteira <br> Imagem Real <br> Escala 1/18. Tamanho entre 8cm e 11cm de altura. <br><strong>Observação:</strong>: Os itens do cenário não acompanham o produto.',
-      // ... (outras descrições especiais)
+      01: 'Modelo + Esteira <br> Imagem Real <br> Escala 1/18. Tamanho entre 8cm e 11cm de altura. <br><strong>Observação:</strong>: Os itens do cenário não acompanham o produto.'
     };
 
-    // OBSERVAÇÃO PADRÃO PARA TODOS OS PRODUTOS
     const observacaoPadrao = '<br><strong>Observação:</strong> Todos os produtos serão enviados em cores aleatórias disponíveis. Caso opte por alguma cor específica, informe no ato da solicitação.';
 
-    // FUNÇÃO: VERIFICA SE UMA IMAGEM EXISTE
+    // FUNÇÕES DE IMAGEM
     function checkImageExists(url, callback) {
       const img = new Image();
-      img.onload = function() {
-        callback(true); // Chama callback com true se a imagem carregar
-      };
-      img.onerror = function() {
-        callback(false); // Chama callback com false se houver erro
-      };
+      img.onload = function() { callback(true); };
+      img.onerror = function() { callback(false); };
       img.src = url;
     }
 
-    // FUNÇÕES DO CARROSSEL //
-
-    // INICIALIZA O CARROSSEL
+    // CARROSSEL
     async function initCarousel() {
       const carousel = document.getElementById('carousel');
       const indicators = document.getElementById('carouselIndicators');
       
-      // VERIFICA IMAGENS DE 1 A 50
       for (let i = 1; i <= 50; i++) {
         const imgUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/carrossel/c_${i}.webp`;
         
         await new Promise(resolve => {
           checkImageExists(imgUrl, function(exists) {
             if (exists) {
-              // CRIA E ADICIONA IMAGEM AO CARROSSEL
               const img = document.createElement('img');
               img.src = imgUrl;
               img.alt = `Imagem de catálogo ${i}`;
               carousel.appendChild(img);
               
-              // CRIA INDICADOR
               const indicator = document.createElement('div');
               indicator.className = 'carousel-indicator';
               indicator.onclick = () => goToSlide(carouselItems.length);
               indicators.appendChild(indicator);
               
-              // ADICIONA À LISTA DE ITENS
               carouselItems.push(img);
             }
             resolve();
@@ -702,58 +631,43 @@
       }
       
       if (carouselItems.length > 0) {
-        updateCarousel(); // ATUALIZA EXIBIÇÃO
-        startCarousel(); // INICIA ANIMAÇÃO
+        updateCarousel();
+        startCarousel();
         
-        // EVENTOS PARA PAUSAR/REINICIAR COM MOUSE
         document.querySelector('.carousel-container').addEventListener('mouseenter', pauseCarousel);
         document.querySelector('.carousel-container').addEventListener('mouseleave', startCarousel);
       } else {
-        // OCULTA SE NÃO HOUVER IMAGENS
         document.querySelector('.carousel-container').style.display = 'none';
       }
     }
 
-    // INICIA ANIMAÇÃO AUTOMÁTICA
     function startCarousel() {
-      if (carouselItems.length <= 1) return; // NÃO FAZ NADA SE HOUVER APENAS 1 ITEM
+      if (carouselItems.length <= 1) return;
       
-      clearInterval(carouselInterval); // LIMPA INTERVALO EXISTENTE
-      
-      // CONFIGURA INTERVALO PARA TROCA A CADA 5 SEGUNDOS
-      carouselInterval = setInterval(() => {
-        moveSlide(1);
-      }, 5000);
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(() => moveSlide(1), 5000);
     }
 
-    // PAUSA A ANIMAÇÃO
     function pauseCarousel() {
       clearInterval(carouselInterval);
     }
 
-    // MOVIMENTA O CARROSSEL
     function moveSlide(direction) {
       if (carouselItems.length <= 1) return;
       
       clearInterval(carouselInterval);
-      
       currentSlide += direction;
-      // VERIFICA LIMITES
-      if (currentSlide >= carouselItems.length) {
-        currentSlide = 0;
-      } else if (currentSlide < 0) {
-        currentSlide = carouselItems.length - 1;
-      }
+      
+      if (currentSlide >= carouselItems.length) currentSlide = 0;
+      else if (currentSlide < 0) currentSlide = carouselItems.length - 1;
       
       updateCarousel();
       
-      // REINICIA ANIMAÇÃO SE MOUSE NÃO ESTIVER SOBRE
       if (!document.querySelector('.carousel-container').matches(':hover')) {
         startCarousel();
       }
     }
 
-    // VAI PARA UM SLIDE ESPECÍFICO
     function goToSlide(index) {
       if (carouselItems.length <= 1) return;
       
@@ -766,102 +680,78 @@
       }
     }
 
-    // ATUALIZA A EXIBIÇÃO DO CARROSSEL
     function updateCarousel() {
       const carousel = document.getElementById('carousel');
       const indicators = document.querySelectorAll('.carousel-indicator');
       
-      // APLICA TRANSFORMAÇÃO PARA MOSTRAR SLIDE ATUAL
       carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
       
-      // ATUALIZA INDICADORES
       indicators.forEach((indicator, index) => {
         indicator.classList.toggle('active', index === currentSlide);
       });
     }
 
-    // FUNÇÕES DO MODAL DE IMAGEM //
-
-    // APLICA ZOOM NA IMAGEM
+    // MODAL DE IMAGEM
     function zoomImage(zoomFactor) {
       const modalImg = document.getElementById('modalImg');
       currentZoom += zoomFactor;
       
-      // LIMITES DE ZOOM
       if (currentZoom < 0.5) currentZoom = 0.5;
       if (currentZoom > 3) currentZoom = 3;
       
       modalImg.style.transform = `scale(${currentZoom})`;
     }
 
-    // RESETA O ZOOM
     function resetZoom() {
       currentZoom = 1;
       document.getElementById('modalImg').style.transform = 'scale(1)';
     }
 
-    // NAVEGA ENTRE IMAGENS NO MODAL
     function navigateModal(direction) {
       currentModalImageIndex += direction;
       
-      // VERIFICA LIMITES
-      if (currentModalImageIndex >= modalImages.length) {
-        currentModalImageIndex = 0;
-      } else if (currentModalImageIndex < 0) {
-        currentModalImageIndex = modalImages.length - 1;
-      }
+      if (currentModalImageIndex >= modalImages.length) currentModalImageIndex = 0;
+      else if (currentModalImageIndex < 0) currentModalImageIndex = modalImages.length - 1;
       
-      // ATUALIZA IMAGEM E RESETA ZOOM
       document.getElementById('modalImg').src = modalImages[currentModalImageIndex].src;
       resetZoom();
     }
 
-    // FECHA O MODAL
     function closeModal() {
       document.getElementById('imgModal').style.display = 'none';
       resetZoom();
     }
 
-    // FUNÇÕES DE PRODUTOS //
-
-    // CRIA ELEMENTO HTML PARA UM PRODUTO
+    // PRODUTOS
     async function createProduct(i) {
-      const index = i.toString().padStart(2, '0'); // FORMATA CÓDIGO COM 2 DÍGITOS
+      const index = i.toString().padStart(2, '0');
       const mainImageUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/produtos/${index}.webp`;
       
       return new Promise((resolve) => {
         checkImageExists(mainImageUrl, (exists) => {
           if (!exists) {
-            resolve(null); // RETORNA NULL SE IMAGEM NÃO EXISTIR
+            resolve(null);
             return;
           }
 
-          // CRIA ESTRUTURA DO PRODUTO
           const product = document.createElement('div');
           product.className = 'product';
 
-          // COLUNA DE IMAGEM
           const imageColumn = document.createElement('div');
           imageColumn.className = 'image-column';
 
-          // IMAGEM PRINCIPAL
           const mainImg = document.createElement('img');
           mainImg.src = mainImageUrl;
           mainImg.alt = `Produto ${i}`;
           mainImg.className = 'main-img';
           mainImg.onclick = function() {
-            // COLETA TODAS AS IMAGENS DISPONÍVEIS
             modalImages = [mainImg];
             
-            // ADICIONA MINIATURAS À LISTA
             const thumbnails = this.parentNode.querySelectorAll('.thumbnail-container img');
             thumbnails.forEach(thumb => {
-              if (thumb.src !== mainImg.src) {
-                modalImages.push(thumb);
-              }
+              if (thumb.src !== mainImg.src) modalImages.push(thumb);
             });
             
-            // ENCONTRA ÍNDICE DA IMAGEM CLICADA
             currentModalImageIndex = 0;
             for (let j = 0; j < modalImages.length; j++) {
               if (modalImages[j].src === this.src) {
@@ -870,26 +760,20 @@
               }
             }
             
-            // ABRE MODAL
             document.getElementById('imgModal').style.display = 'block';
             document.getElementById('modalImg').src = this.src;
             resetZoom();
           };
 
-          // CONTAINER DE MINIATURAS
           const thumbnails = document.createElement('div');
           thumbnails.className = 'thumbnail-container';
 
-          // ADICIONA MINIATURA PRINCIPAL
           const mainThumb = document.createElement('img');
           mainThumb.src = mainImg.src;
           mainThumb.alt = `Produto ${i} ângulo 0`;
-          mainThumb.onclick = function() {
-            mainImg.src = this.src; // TROCA IMAGEM PRINCIPAL AO CLICAR
-          };
+          mainThumb.onclick = function() { mainImg.src = this.src; };
           thumbnails.appendChild(mainThumb);
 
-          // VERIFICA E ADICIONA MINIATURAS ADICIONAIS (ÂNGULOS 1-5)
           for (let j = 1; j <= 5; j++) {
             const thumbUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/produtos/${index}_${j}.webp`;
             
@@ -898,37 +782,30 @@
                 const thumb = document.createElement('img');
                 thumb.src = thumbUrl;
                 thumb.alt = `Produto ${i} ângulo ${j}`;
-                thumb.onclick = function() {
-                  mainImg.src = this.src; // TROCA IMAGEM PRINCIPAL AO CLICAR
-                };
+                thumb.onclick = function() { mainImg.src = this.src; };
                 thumbnails.appendChild(thumb);
               }
             });
           }
 
-          // MONTA COLUNA DE IMAGEM
           imageColumn.appendChild(mainImg);
           imageColumn.appendChild(thumbnails);
 
-          // DETALHES DO PRODUTO
           const details = document.createElement('div');
           details.className = 'product-details';
 
-          // OBTÉM DESCRIÇÃO E PREÇO (USA VALORES ESPECIAIS SE DISPONÍVEIS)
           let descricao = (descricoesEspeciais[i] || 
             'Modelo <br> Imagem Real <br> Escala 1/18. Tamanho entre 8cm e 11cm de altura. <br><strong>Observação:</strong>: Os itens do cenário não acompanham o produto.') + 
             observacaoPadrao;
           
           let preco = precosEspeciais[i] || 'R$ 60,00';
 
-          // PREENCHE DETALHES
           details.innerHTML = `
             <h2>Código ${i}</h2>
             <p><strong>Descrição:</strong> ${descricao}</p>
             <p class="price">${preco}</p>
           `;
 
-          // BOTÃO DE INTERESSE
           const interestBtn = document.createElement('button');
           interestBtn.textContent = 'Adicionar aos interesses';
           interestBtn.style.marginTop = '10px';
@@ -946,7 +823,6 @@
 
           details.appendChild(interestBtn);
 
-          // MONTA PRODUTO COMPLETO
           product.appendChild(imageColumn);
           product.appendChild(details);
           
@@ -955,56 +831,45 @@
       });
     }
 
-    // CARREGA TODOS OS PRODUTOS
     async function loadProducts() {
-      loader.style.display = 'block'; // MOSTRA LOADER
-      catalog.innerHTML = ''; // LIMPA CATÁLOGO
+      loader.style.display = 'block';
+      catalog.innerHTML = '';
       
       const maxProducts = 100;
       let loadedProducts = 0;
       
-      // VERIFICA PRODUTOS DE 1 A 100
       for (let i = 1; i <= maxProducts; i++) {
         const product = await createProduct(i);
         if (product) {
           catalog.appendChild(product);
           loadedProducts++;
           
-          // PAUSA PERIÓDICA PARA NÃO TRAVAR A INTERFACE
-          if (i % 10 === 0) {
-            await new Promise(resolve => setTimeout(resolve, 0));
-          }
+          if (i % 10 === 0) await new Promise(resolve => setTimeout(resolve, 0));
         }
       }
       
-      loader.style.display = 'none'; // OCULTA LOADER
+      loader.style.display = 'none';
       
-      // MENSAGEM SE NENHUM PRODUTO FOR ENCONTRADO
       if (loadedProducts === 0) {
         catalog.innerHTML = '<p style="text-align: center; color: white;">Nenhum produto encontrado.</p>';
       }
     }
 
-    // FUNÇÕES DE INTERESSES //
-
-    // ADICIONA ITEM À LISTA DE INTERESSES
+    // INTERESSES
     function addToInterests(codigo, descricao, preco, imagem) {
       interests.push({ codigo, descricao, preco, imagem });
       updateInterestList();
     }
 
-    // ATUALIZA A EXIBIÇÃO DA LISTA DE INTERESSES
     function updateInterestList() {
       const list = document.getElementById("interestList");
       list.innerHTML = '';
       
-      // MENSAGEM SE LISTA ESTIVER VAZIA
       if (interests.length === 0) {
         list.innerHTML = '<li style="color: gray;">Nenhum item adicionado.</li>';
         return;
       }
       
-      // ADICIONA CADA ITEM À LISTA
       interests.forEach((item, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
@@ -1022,19 +887,16 @@
       updateContactMessage();
     }
 
-    // REMOVE ITEM DA LISTA DE INTERESSES
     function removeInterest(index) {
       interests.splice(index, 1);
       updateInterestList();
     }
 
-    // ALTERNA VISIBILIDADE DO PAINEL DE INTERESSES
     function toggleInterestPanel() {
       const panel = document.getElementById("interestPanel");
       panel.style.display = panel.style.display === "none" ? "block" : "none";
     }
 
-    // MOSTRA MODAL DE CONTATO
     function showContactModal() {
       if (interests.length === 0) {
         alert('Por favor, adicione itens de interesse antes de enviar.');
@@ -1045,35 +907,28 @@
       updateContactMessage();
     }
 
-    // ATUALIZA RESUMO NO FORMULÁRIO DE CONTATO
     function updateContactMessage() {
       const summaryContainer = document.getElementById('selectedItemsSummary');
       const itemsDataField = document.getElementById('itemsData');
       
       summaryContainer.innerHTML = '';
       
-      // MENSAGEM SE NENHUM ITEM SELECIONADO
       if (interests.length === 0) {
         summaryContainer.innerHTML = '<div>Nenhum item selecionado</div>';
         itemsDataField.value = '';
         return;
       }
       
-      // AGRUPA ITENS REPETIDOS
       const itemsGrouped = {};
       
       interests.forEach(item => {
         if (!itemsGrouped[item.codigo]) {
-          itemsGrouped[item.codigo] = {
-            ...item,
-            quantity: 1
-          };
+          itemsGrouped[item.codigo] = { ...item, quantity: 1 };
         } else {
           itemsGrouped[item.codigo].quantity++;
         }
       });
       
-      // GERA HTML DO RESUMO
       let summaryHTML = '';
       let itemsData = [];
       
@@ -1096,7 +951,6 @@
       summaryContainer.innerHTML = summaryHTML;
       itemsDataField.value = JSON.stringify(itemsData);
       
-      // MENSAGEM PADRÃO PARA O CAMPO DE MENSAGEM
       const defaultMessage = `Olá, tenho interesse nos seguintes produtos:\n\n${
         Object.values(itemsGrouped).map(item => 
           `Código: ${item.codigo} (${item.quantity}x) - ${item.preco}`
@@ -1106,12 +960,11 @@
       document.getElementById('customMessage').value = defaultMessage;
     }
 
-    // MÁSCARA PARA CAMPO DE WHATSAPP
+    // FORMULÁRIO
     document.getElementById('whatsapp').addEventListener('input', function(e) {
-      let value = e.target.value.replace(/\D/g, ''); // REMOVE NÃO-DÍGITOS
-      if (value.length > 11) value = value.substring(0, 11); // LIMITA A 11 DÍGITOS
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.substring(0, 11);
       
-      // FORMATAÇÃO: (XX) XXXXX-XXXX
       if (value.length > 0) {
         value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
         if (value.length > 10) {
@@ -1122,77 +975,57 @@
       e.target.value = value;
     });
 
-    // VALIDAÇÃO DO FORMULÁRIO
-   document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // Validação do WhatsApp
-  const whatsapp = document.getElementById('whatsapp').value.replace(/\D/g, '');
-  if (whatsapp.length < 11) {
-    alert('Por favor, insira um número de WhatsApp válido com DDD.');
-    return;
-  }
-  
-  // Mostra feedback visual
-  const btn = this.querySelector('button[type="submit"]');
-  btn.textContent = 'Enviando...';
-  btn.disabled = true;
-  
-  // Prepara os dados para o Google Sheets
-  const formData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    whatsapp: document.getElementById('whatsapp').value,
-    items: document.getElementById('itemsData').value,
-    message: document.getElementById('customMessage').value,
-    date: new Date().toISOString()
-  };
-  
-  // Envia para o Google Sheets
-  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwaCAdlMemCa0KbhnEP2IdoJV7Jvkfy_yrhfK1Rv1vn6ipUPTYykV8SMkSDSoBEmyrg/exec';
-  fetch(googleScriptUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(response => {
-    // Depois de enviar para o Google Sheets, submete o formulário original
-    document.getElementById('contactForm').submit();
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const whatsapp = document.getElementById('whatsapp').value.replace(/\D/g, '');
+      if (whatsapp.length < 11) {
+        alert('Por favor, insira um número de WhatsApp válido com DDD.');
+        return;
+      }
+      
+      const btn = this.querySelector('button[type="submit"]');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        whatsapp: document.getElementById('whatsapp').value,
+        items: document.getElementById('itemsData').value,
+        message: document.getElementById('customMessage').value,
+        date: new Date().toISOString()
+      };
+      
+      // Substitua pela URL do seu Google Apps Script
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwaCAdlMemCa0KbhnEP2IdoJV7Jvkfy_yrhfK1Rv1vn6ipUPTYykV8SMkSDSoBEmyrg/exec';
+      fetch(googleScriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        document.getElementById('contactForm').submit();
+        interests.length = 0;
+        updateInterestList();
+      })
+      .catch(error => {
+        alert('Ocorreu um erro. Por favor, tente novamente.');
+        console.error('Error:', error);
+        btn.textContent = 'Enviar Interesses';
+        btn.disabled = false;
+      });
+    });
     
-    // Limpa os interesses
-    interests.length = 0;
-    updateInterestList();
-  })
-  .catch(error => {
-    alert('Ocorreu um erro. Por favor, tente novamente.');
-    console.error('Error:', error);
-    btn.textContent = 'Enviar Interesses';
-    btn.disabled = false;
-  });
-});
-    
-    // Redireciona para a página de obrigado
-    window.location.href = "https://shakaw67.github.io/Homol_Shakaw3DPrint//obrigado.html";
-  })
-  .catch(error => {
-    alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
-    console.error('Error:', error);
-  })
-  .finally(() => {
-    btn.textContent = 'Enviar Interesses';
-    btn.disabled = false;
-  });
-});
-    
-    // Adiciona controle de teclado para o zoom
+    // CONTROLES DE TECLADO
     document.addEventListener('keydown', function(event) {
       const modal = document.getElementById('imgModal');
-      if (modal.style.display === 'block') { // Só funciona se o modal estiver aberto
+      if (modal.style.display === 'block') {
         switch(event.key) {
           case '+':
-          case '=': // Tecla + (sem Shift)
+          case '=':
             zoomImage(0.2);
             break;
           case '-':
@@ -1205,18 +1038,16 @@
       }
     });
 
-    // INICIALIZAÇÃO DA PÁGINA
+    // INICIALIZAÇÃO
     window.onload = function() {
-      initCarousel(); // INICIA CARROSSEL
-      loadProducts(); // CARREGA PRODUTOS
+      initCarousel();
+      loadProducts();
       
-      // CONFIGURA BOTÃO "VOLTAR AO TOPO"
       const btn = document.getElementById("backToTopBtn");
       window.onscroll = function() {
         btn.style.display = window.scrollY > 200 ? "block" : "none";
       };
     };
-  
   </script>
 </body>
 </html>
