@@ -963,6 +963,8 @@
     // ATUALIZA A MENSAGEM DE CONTATO COM OS ITENS SELECIONADOS
     <script>
     // FUNÇÃO ATUALIZADA PARA MOSTRAR APENAS CÓDIGO, VALOR E TOTAL
+    
+    // FUNÇÃO ATUALIZADA PARA MOSTRAR APENAS CÓDIGO, VALOR E TOTAL
     function updateContactMessage() {
         const summaryContainer = document.getElementById('selectedItemsSummary');
         const itemsDataField = document.getElementById('itemsData');
@@ -1042,8 +1044,6 @@
         e.target.value = formattedValue;
     });
 
-    // [Mantenha o restante das funções...]
-    
     // INICIALIZAÇÃO DA PÁGINA
     window.onload = function() {
         initCarousel();
@@ -1054,6 +1054,7 @@
             btn.style.display = window.scrollY > 200 ? "block" : "none";
         };
     };
+
   </script>
 </body>
 </html>
