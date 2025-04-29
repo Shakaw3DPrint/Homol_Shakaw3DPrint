@@ -575,37 +575,42 @@
       <!-- TÍTULO -->
       <h2>Enviar Interesses</h2>
       <!-- FORMULÁRIO DE CONTATO (INTEGRAÇÃO COM FORMSUBMIT.CO) -->
-      <form id="contactForm">
-  <!-- Mantemos os campos ocultos originais para referência -->
-  <input type="hidden" id="itemsData" name="items_data">
-  
-  <!-- SEÇÃO DE DADOS PESSOAIS -->
-  <div class="form-section">
-    <label for="name">Nome:</label>
-    <input type="text" id="name" name="name" required>
-    
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" required>
-    
-    <label for="whatsapp">WhatsApp:</label>
-    <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
+     <div id="contactModal" class="contact-modal">
+  <div class="contact-modal-content">
+    <span class="close-contact" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
+    <h2>Enviar Interesses</h2>
+    <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Novo interesse - Shakaw 3D Print">
+      <input type="hidden" name="_autoresponse" value="Recebemos seu interesse! Entraremos em contato em breve.">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_next" value="https://shakaw67.github.io/Homol_Shakaw3DPrint//obrigado.html">
+      <input type="hidden" id="itemsData" name="items_data">
+      
+      <div class="form-section">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="whatsapp">WhatsApp:</label>
+        <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
+      </div>
+      
+      <div class="form-section">
+        <h3>Resumo dos Itens Selecionados</h3>
+        <div id="selectedItemsSummary" class="items-summary"></div>
+      </div>
+      
+      <div class="form-section">
+        <label for="customMessage">Mensagem Adicional:</label>
+        <textarea id="customMessage" name="custom_message" rows="4" placeholder="Digite aqui qualquer informação adicional..."></textarea>
+      </div>
+      
+      <button type="submit">Enviar Interesses</button>
+    </form>
   </div>
-  
-  <!-- SEÇÃO DE RESUMO DOS ITENS -->
-  <div class="form-section">
-    <h3>Resumo dos Itens Selecionados</h3>
-    <div id="selectedItemsSummary" class="items-summary"></div>
-  </div>
-  
-  <!-- SEÇÃO DE MENSAGEM ADICIONAL -->
-  <div class="form-section">
-    <label for="customMessage">Mensagem Adicional:</label>
-    <textarea id="customMessage" name="custom_message" rows="4" placeholder="Digite aqui qualquer informação adicional..."></textarea>
-  </div>
-  
-  <!-- BOTÃO DE ENVIO -->
-  <button type="submit">Enviar Interesses</button>
-</form>
+</div>
 
   <!-- BOTÃO "VOLTAR AO TOPO" -->
   <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTopBtn" title="Voltar ao topo">⬆️ Topo</button>
@@ -1122,7 +1127,7 @@
     });
 
     // VALIDAÇÃO DO FORMULÁRIO
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+   document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
   // Validação do WhatsApp
@@ -1137,41 +1142,39 @@
   btn.textContent = 'Enviando...';
   btn.disabled = true;
   
-  // Prepara os dados do formulário
+  // Prepara os dados para o Google Sheets
   const formData = {
     name: document.getElementById('name').value,
     email: document.getElementById('email').value,
     whatsapp: document.getElementById('whatsapp').value,
     items: document.getElementById('itemsData').value,
     message: document.getElementById('customMessage').value,
-    // Campos adicionais para manter compatibilidade com o FormSubmit
-    _subject: 'Novo interesse - Shakaw 3D Print',
-    _autoresponse: 'Recebemos seu interesse! Entraremos em contato em breve.',
-    _template: 'box'
+    date: new Date().toISOString()
   };
   
-  // URL do seu Google Apps Script (substitua pela sua URL)
-  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwaCAdlMemCa0KbhnEP2IdoJV7Jvkfy_yrhfK1Rv1vn6ipUPTYykV8SMkSDSoBEmyrg/exec';
-  
   // Envia para o Google Sheets
+  const googleScriptUrl = 'SUA_URL_DO_GOOGLE_SCRIPT_AQUI';
   fetch(googleScriptUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(formData),
+    body: JSON.stringify(formData)
   })
-  .then(response => response.json())
-  .then(data => {
-        // Limpa a lista de interesses após envio bem-sucedido
+  .then(response => {
+    // Depois de enviar para o Google Sheets, submete o formulário original
+    document.getElementById('contactForm').submit();
+    
+    // Limpa os interesses
     interests.length = 0;
-    updateInterestList();// Adicione isto dentro do .then() após o fetch para o Google Sheets
-fetch('https://formsubmit.co/shakaw3dprint@hotmail.com', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(formData)
+    updateInterestList();
+  })
+  .catch(error => {
+    alert('Ocorreu um erro. Por favor, tente novamente.');
+    console.error('Error:', error);
+    btn.textContent = 'Enviar Interesses';
+    btn.disabled = false;
+  });
 });
     
     // Redireciona para a página de obrigado
