@@ -1049,17 +1049,42 @@
       btn.textContent = 'Enviando...';
       btn.disabled = true;
       
-      // Envia o formulário diretamente para o FormSubmit
-      this.submit();
+      // Prepara os dados para o Google Sheets
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        whatsapp: document.getElementById('whatsapp').value,
+        items: document.getElementById('itemsData').value,
+        message: document.getElementById('customMessage').value,
+        date: new Date().toISOString()
+      };
       
-      // Limpa a lista de interesses após o envio
-      interests.length = 0;
-      updateInterestList();
+      // URL do seu Google Apps Script
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwaCAdlMemCa0KbhnEP2IdoJV7Jvkfy_yrhfK1Rv1vn6ipUPTYykV8SMkSDSoBEmyrg/exec';
       
-      // Fecha o modal após um pequeno delay para dar feedback visual
-      setTimeout(() => {
-        document.getElementById('contactModal').style.display = 'none';
-      }, 500);
+      // 1. Primeiro envia para o Google Sheets
+      fetch(googleScriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        // 2. Depois de salvar no Sheets, envia para o FormSubmit
+        const form = document.getElementById('contactForm');
+        form.submit();
+        
+        // Limpa os interesses apenas se ambos os envios forem bem-sucedidos
+        interests.length = 0;
+        updateInterestList();
+      })
+      .catch(error => {
+        console.error('Erro ao enviar para o Google Sheets:', error);
+        alert('Ocorreu um erro ao salvar seus dados. Por favor, tente novamente.');
+        btn.textContent = 'Enviar Interesses';
+        btn.disabled = false;
+      });
     });
     
     // CONTROLES DE TECLADO PARA O MODAL
