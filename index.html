@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Shakaw 3D Print</title>
   <style>
+    /* ESTILOS GERAIS */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       background: #00303f;
     }
 
+    /* CABEÇALHO */
     .header {
       text-align: center;
       padding: 40px 20px 20px;
@@ -47,6 +49,7 @@
       background: rgba(255, 255, 255, 0.25);
     }
     
+    /* CARROSSEL */
     .carousel-container {
       max-width: 1000px;
       margin: 30px auto;
@@ -114,6 +117,7 @@
       background: white;
     }
     
+    /* CATÁLOGO DE PRODUTOS */
     .catalog-page {
       display: flex;
       flex-direction: column;
@@ -193,6 +197,32 @@
       color: #009688;
     }
     
+    /* CONTROLES DE QUANTIDADE */
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 10px 0;
+    }
+    .qty-btn {
+      width: 25px;
+      height: 25px;
+      border: none;
+      background: #0077cc;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .qty-btn:hover {
+      background: #005fa3;
+    }
+    .quantity {
+      width: 40px;
+      text-align: center;
+    }
+    
+    /* MODAL DE IMAGEM */
     .modal {
       display: none;
       position: fixed;
@@ -255,6 +285,7 @@
       right: 20px;
     }
     
+    /* CONTROLES DE ZOOM */
     .zoom-controls {
       position: fixed;
       bottom: 20px;
@@ -281,26 +312,7 @@
       transform: scale(1.05);
     }
     
-    @media (max-width: 768px) {
-      .product {
-        flex-direction: column;
-        align-items: center;
-      }
-      .product-details {
-        max-width: 100%;
-      }
-      .carousel-container {
-        height: 250px;
-      }
-      .modal-nav {
-        padding: 10px;
-        font-size: 16px;
-      }
-      .zoom-controls {
-        bottom: 10px;
-      }
-    }
-
+    /* BOTÃO VOLTAR AO TOPO */
     #backToTopBtn {
       position: fixed;
       bottom: 30px;
@@ -320,6 +332,7 @@
       background-color: #005fa3;
     }
     
+    /* PAINEL DE INTERESSES */
     #interestPanel {
       display: none;
       position: fixed;
@@ -340,6 +353,7 @@
       overflow-y: auto;
     }
     
+    /* BOTÃO DE INTERESSES */
     .interest-btn {
       position: fixed;
       bottom: 30px;
@@ -360,6 +374,7 @@
       transform: scale(1.05);
     }
     
+    /* MODAL DE CONTATO */
     .contact-modal {
       display: none;
       position: fixed;
@@ -452,6 +467,7 @@
       min-width: 50px;
     }
     
+    /* LOADER */
     .loader {
       border: 5px solid #f3f3f3;
       border-top: 5px solid #0057b7;
@@ -467,12 +483,38 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+    
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .product {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product-details {
+        max-width: 100%;
+      }
+      .carousel-container {
+        height: 250px;
+      }
+      .modal-nav {
+        padding: 10px;
+        font-size: 16px;
+      }
+      .zoom-controls {
+        bottom: 10px;
+      }
+      #interestPanel {
+        right: 10px;
+        bottom: 70px;
+        max-width: 280px;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- CABEÇALHO -->
   <div class="header">
-    <img src="https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/logo.webp" alt="Logo Shakaw 3D Print">
+    <img src="https://shakaw67.github.io/Homol_Shakaw3DPrint/assets/img/logo.webp" alt="Logo Shakaw 3D Print">
     <h1>Shakaw 3D Print</h1>
     <div class="header-links">
       <a href="https://www.instagram.com/shakaw3dprint" target="_blank">
@@ -523,7 +565,7 @@
         <input type="hidden" name="_subject" value="Novo interesse - Shakaw 3D Print">
         <input type="hidden" name="_autoresponse" value="Recebemos seu interesse! Entraremos em contato em breve.">
         <input type="hidden" name="_template" value="box">
-        <input type="hidden" name="_next" value="https://shakaw67.github.io/Homol_Shakaw3DPrint//obrigado.html">
+        <input type="hidden" name="_next" value="https://shakaw67.github.io/Homol_Shakaw3DPrint/obrigado.html">
         <input type="hidden" id="itemsData" name="items_data">
         
         <div class="form-section">
@@ -567,121 +609,129 @@
 
   <!-- SCRIPT JAVASCRIPT -->
   <script>
-    
+    // =============================================
     // VARIÁVEIS GLOBAIS
+    // =============================================
     const catalog = document.getElementById("catalog");
     const loader = document.getElementById("loader");
-    const interests = []; // Array para armazenar os itens de interesse
-    let currentSlide = 0; // Índice do slide atual do carrossel
-    let carouselItems = []; // Array para armazenar os itens do carrossel
-    let carouselInterval; // Intervalo para o carrossel automático
-    let currentModalImageIndex = 0; // Índice da imagem atual no modal
-    let modalImages = []; // Array para armazenar as imagens no modal
-    let currentZoom = 1; // Nível de zoom atual no modal
+    const interests = []; // Armazena todos os itens de interesse
+    let currentSlide = 0; // Slide atual do carrossel
+    let carouselItems = []; // Itens do carrossel
+    let carouselInterval; // Intervalo do carrossel automático
+    let currentModalImageIndex = 0; // Índice da imagem no modal
+    let modalImages = []; // Imagens no modal
+    let currentZoom = 1; // Nível de zoom atual
 
-    // PREÇOS E DESCRIÇÕES ESPECIAIS
-    const precosEspeciais = {
-      44: 'R$ 45,00',
-      45: 'R$ 45,00',
-      46: 'Por favor consultar com vendedor',
-      47: 'Por favor consultar com vendedor',
-      48: 'Por favor consultar com vendedor',
-      60: 'R$ 90,00'
+    // Dados especiais para produtos
+    const specialData = {
+      prices: {
+        44: 'R$ 45,00',
+        45: 'R$ 45,00',
+        46: 'Consultar valor',
+        47: 'Consultar valor',
+        48: 'Consultar valor',
+        60: 'R$ 90,00'
+      },
+      descriptions: {
+        1: 'Modelo + Esteira <br> Imagem Real <br> Escala 1/18. Tamanho entre 8cm e 11cm de altura. <br><strong>Observação:</strong> Os itens do cenário não acompanham o produto.'
+      },
+      defaultNote: '<br><strong>Observação:</strong> Todos os produtos serão enviados em cores aleatórias disponíveis. Caso opte por alguma cor específica, informe no ato da solicitação.'
     };
 
-    const descricoesEspeciais = {
-      01: 'Modelo + Esteira <br> Imagem Real <br> Escala 1/18. Tamanho entre 8cm e 11cm de altura. <br><strong>Observação:</strong>: Os itens do cenário não acompanham o produto.'
-    };
+    // =============================================
+    // FUNÇÕES DO CARROSSEL
+    // =============================================
 
-    const observacaoPadrao = '<br><strong>Observação:</strong> Todos os produtos serão enviados em cores aleatórias disponíveis. Caso opte por alguma cor específica, informe no ato da solicitação.';
-
-    // FUNÇÃO PARA VERIFICAR SE UMA IMAGEM EXISTE
-    function checkImageExists(url, callback) {
-      const img = new Image();
-      img.onload = function() { callback(true); };
-      img.onerror = function() { callback(false); };
-      img.src = url;
-    }
-
-    // INICIALIZAÇÃO DO CARROSSEL
+    /**
+     * Inicializa o carrossel verificando e carregando imagens disponíveis
+     */
     async function initCarousel() {
       const carousel = document.getElementById('carousel');
       const indicators = document.getElementById('carouselIndicators');
       
-      // Verifica imagens de 1 a 50 para o carrossel
       for (let i = 1; i <= 50; i++) {
-        const imgUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/carrossel/c_${i}.webp`;
+        const imgUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint/assets/img/carrossel/c_${i}.webp`;
         
-        await new Promise(resolve => {
-          checkImageExists(imgUrl, function(exists) {
-            if (exists) {
-              // Cria elemento de imagem para o carrossel
-              const img = document.createElement('img');
-              img.src = imgUrl;
-              img.alt = `Imagem de catálogo ${i}`;
-              carousel.appendChild(img);
-              
-              // Cria indicador para o slide
-              const indicator = document.createElement('div');
-              indicator.className = 'carousel-indicator';
-              indicator.onclick = () => goToSlide(carouselItems.length);
-              indicators.appendChild(indicator);
-              
-              // Adiciona ao array de itens do carrossel
-              carouselItems.push(img);
-            }
-            resolve();
-          });
-        });
+        const exists = await checkImageExists(imgUrl);
+        if (exists) {
+          const img = document.createElement('img');
+          img.src = imgUrl;
+          img.alt = `Imagem ${i}`;
+          carousel.appendChild(img);
+          
+          const indicator = document.createElement('div');
+          indicator.className = 'carousel-indicator';
+          indicator.onclick = () => goToSlide(carouselItems.length);
+          indicators.appendChild(indicator);
+          
+          carouselItems.push(img);
+        }
       }
       
-      // Se houver itens no carrossel, inicia a exibição
       if (carouselItems.length > 0) {
         updateCarousel();
         startCarousel();
-        
-        // Pausa o carrossel quando o mouse está sobre ele
-        document.querySelector('.carousel-container').addEventListener('mouseenter', pauseCarousel);
-        document.querySelector('.carousel-container').addEventListener('mouseleave', startCarousel);
+        setupCarouselHover();
       } else {
-        // Esconde o carrossel se não houver imagens
         document.querySelector('.carousel-container').style.display = 'none';
       }
     }
 
-    // INICIA O CARROSSEL AUTOMÁTICO
-    function startCarousel() {
-      if (carouselItems.length <= 1) return; // Não precisa de carrossel se houver apenas 1 item
-      
-      clearInterval(carouselInterval);
-      carouselInterval = setInterval(() => moveSlide(1), 5000); // Muda de slide a cada 5 segundos
+    /**
+     * Verifica se uma imagem existe
+     */
+    function checkImageExists(url) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+      });
     }
 
-    // PAUSA O CARROSSEL AUTOMÁTICO
+    /**
+     * Inicia o carrossel automático
+     */
+    function startCarousel() {
+      if (carouselItems.length <= 1) return;
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(() => moveSlide(1), 5000);
+    }
+
+    /**
+     * Pausa o carrossel automático
+     */
     function pauseCarousel() {
       clearInterval(carouselInterval);
     }
 
-    // MOVIMENTA O CARROSSEL NA DIREÇÃO ESPECIFICADA
+    /**
+     * Configura eventos de hover para pausar/iniciar carrossel
+     */
+    function setupCarouselHover() {
+      const container = document.querySelector('.carousel-container');
+      container.addEventListener('mouseenter', pauseCarousel);
+      container.addEventListener('mouseleave', startCarousel);
+    }
+
+    /**
+     * Move o carrossel na direção especificada
+     */
     function moveSlide(direction) {
       if (carouselItems.length <= 1) return;
       
       clearInterval(carouselInterval);
-      currentSlide += direction;
-      
-      // Verifica os limites do carrossel
-      if (currentSlide >= carouselItems.length) currentSlide = 0;
-      else if (currentSlide < 0) currentSlide = carouselItems.length - 1;
-      
+      currentSlide = (currentSlide + direction + carouselItems.length) % carouselItems.length;
       updateCarousel();
       
-      // Reinicia o carrossel automático se o mouse não estiver sobre ele
       if (!document.querySelector('.carousel-container').matches(':hover')) {
         startCarousel();
       }
     }
 
-    // VAI PARA UM SLIDE ESPECÍFICO
+    /**
+     * Vai para um slide específico
+     */
     function goToSlide(index) {
       if (carouselItems.length <= 1) return;
       
@@ -694,233 +744,246 @@
       }
     }
 
-    // ATUALIZA A POSIÇÃO DO CARROSSEL E OS INDICADORES
+    /**
+     * Atualiza a posição do carrossel e indicadores
+     */
     function updateCarousel() {
       const carousel = document.getElementById('carousel');
       const indicators = document.querySelectorAll('.carousel-indicator');
       
-      // Move o carrossel para o slide atual
       carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
       
-      // Atualiza os indicadores de slide
       indicators.forEach((indicator, index) => {
         indicator.classList.toggle('active', index === currentSlide);
       });
     }
 
-    // FUNÇÕES PARA O MODAL DE IMAGEM
+    // =============================================
+    // FUNÇÕES DO MODAL DE IMAGEM
+    // =============================================
 
-    // APLICA ZOOM NA IMAGEM DO MODAL
+    /**
+     * Aplica zoom na imagem do modal
+     */
     function zoomImage(zoomFactor) {
       const modalImg = document.getElementById('modalImg');
-      currentZoom += zoomFactor;
-      
-      // Limita o zoom mínimo e máximo
-      if (currentZoom < 0.5) currentZoom = 0.5;
-      if (currentZoom > 3) currentZoom = 3;
-      
+      currentZoom = Math.min(Math.max(currentZoom + zoomFactor, 0.5), 3);
       modalImg.style.transform = `scale(${currentZoom})`;
     }
 
-    // RESETA O ZOOM DA IMAGEM
+    /**
+     * Reseta o zoom da imagem
+     */
     function resetZoom() {
       currentZoom = 1;
       document.getElementById('modalImg').style.transform = 'scale(1)';
     }
 
-    // NAVEGA ENTRE AS IMAGENS NO MODAL
+    /**
+     * Navega entre imagens no modal
+     */
     function navigateModal(direction) {
-      currentModalImageIndex += direction;
-      
-      // Verifica os limites do array de imagens
-      if (currentModalImageIndex >= modalImages.length) currentModalImageIndex = 0;
-      else if (currentModalImageIndex < 0) currentModalImageIndex = modalImages.length - 1;
-      
-      // Atualiza a imagem exibida e reseta o zoom
+      currentModalImageIndex = (currentModalImageIndex + direction + modalImages.length) % modalImages.length;
       document.getElementById('modalImg').src = modalImages[currentModalImageIndex].src;
       resetZoom();
     }
 
-    // FECHA O MODAL
+    /**
+     * Fecha o modal
+     */
     function closeModal() {
       document.getElementById('imgModal').style.display = 'none';
       resetZoom();
     }
 
-    // FUNÇÕES PARA OS PRODUTOS
+    // =============================================
+    // FUNÇÕES DE PRODUTOS
+    // =============================================
 
-    // CRIA UM ELEMENTO DE PRODUTO
+    /**
+     * Cria um elemento de produto
+     */
     async function createProduct(i) {
-      const index = i.toString().padStart(2, '0'); // Formata o índice com 2 dígitos
-      const mainImageUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/produtos/${index}.webp`;
+      const index = i.toString().padStart(2, '0');
+      const mainImageUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint/assets/img/produtos/${index}.webp`;
       
-      return new Promise((resolve) => {
-        checkImageExists(mainImageUrl, (exists) => {
-          if (!exists) {
-            resolve(null); // Retorna null se a imagem não existir
-            return;
-          }
+      const exists = await checkImageExists(mainImageUrl);
+      if (!exists) return null;
 
-          // Cria o container do produto
-          const product = document.createElement('div');
-          product.className = 'product';
+      const product = document.createElement('div');
+      product.className = 'product';
 
-          // Coluna da imagem (lado esquerdo)
-          const imageColumn = document.createElement('div');
-          imageColumn.className = 'image-column';
+      // Coluna da imagem
+      const imageColumn = document.createElement('div');
+      imageColumn.className = 'image-column';
 
-          // Imagem principal do produto
-          const mainImg = document.createElement('img');
-          mainImg.src = mainImageUrl;
-          mainImg.alt = `Produto ${i}`;
-          mainImg.className = 'main-img';
-          mainImg.onclick = function() {
-            // Prepara as imagens para o modal
-            modalImages = [mainImg];
-            
-            // Adiciona as miniaturas ao array de imagens do modal
-            const thumbnails = this.parentNode.querySelectorAll('.thumbnail-container img');
-            thumbnails.forEach(thumb => {
-              if (thumb.src !== mainImg.src) modalImages.push(thumb);
-            });
-            
-            // Encontra o índice da imagem atual
-            currentModalImageIndex = 0;
-            for (let j = 0; j < modalImages.length; j++) {
-              if (modalImages[j].src === this.src) {
-                currentModalImageIndex = j;
-                break;
-              }
-            }
-            
-            // Abre o modal com a imagem
-            document.getElementById('imgModal').style.display = 'block';
-            document.getElementById('modalImg').src = this.src;
-            resetZoom();
-          };
-
-          // Container para as miniaturas
-          const thumbnails = document.createElement('div');
-          thumbnails.className = 'thumbnail-container';
-
-          // Miniatura da imagem principal
-          const mainThumb = document.createElement('img');
-          mainThumb.src = mainImg.src;
-          mainThumb.alt = `Produto ${i} ângulo 0`;
-          mainThumb.onclick = function() { mainImg.src = this.src; };
-          thumbnails.appendChild(mainThumb);
-
-          // Verifica miniaturas adicionais (ângulos 1 a 5)
-          for (let j = 1; j <= 5; j++) {
-            const thumbUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint//assets/img/produtos/${index}_${j}.webp`;
-            
-            checkImageExists(thumbUrl, function(exists) {
-              if (exists) {
-                const thumb = document.createElement('img');
-                thumb.src = thumbUrl;
-                thumb.alt = `Produto ${i} ângulo ${j}`;
-                thumb.onclick = function() { mainImg.src = this.src; };
-                thumbnails.appendChild(thumb);
-              }
-            });
-          }
-
-          imageColumn.appendChild(mainImg);
-          imageColumn.appendChild(thumbnails);
-
-          // Detalhes do produto (lado direito)
-          const details = document.createElement('div');
-          details.className = 'product-details';
-
-          // Obtém descrição especial ou usa a padrão
-          let descricao = (descricoesEspeciais[i] || 
-            'Modelo <br> Imagem Real <br> Escala 1/18. Tamanho entre 8cm e 11cm de altura. <br><strong>Observação:</strong>: Os itens do cenário não acompanham o produto.') + 
-            observacaoPadrao;
-          
-          // Obtém preço especial ou usa o padrão
-          let preco = precosEspeciais[i] || 'R$ 60,00';
-
-          // Preenche os detalhes do produto
-          details.innerHTML = `
-            <h2>Código ${i}</h2>
-            <p><strong>Descrição:</strong> ${descricao}</p>
-            <p class="price">${preco}</p>
-          `;
-
-          // Botão para adicionar aos interesses
-          const interestBtn = document.createElement('button');
-          interestBtn.textContent = 'Adicionar aos interesses';
-          interestBtn.style.marginTop = '10px';
-          interestBtn.style.padding = '8px 12px';
-          interestBtn.style.backgroundColor = '#0077cc';
-          interestBtn.style.color = 'white';
-          interestBtn.style.border = 'none';
-          interestBtn.style.borderRadius = '5px';
-          interestBtn.style.cursor = 'pointer';
-          interestBtn.onclick = function() {
-            addToInterests(i, descricao, preco, mainImg.src);
-            interestBtn.textContent = 'Adicionado!';
-            interestBtn.disabled = true;
-          };
-
-          details.appendChild(interestBtn);
-
-          product.appendChild(imageColumn);
-          product.appendChild(details);
-          
-          resolve(product);
+      // Imagem principal
+      const mainImg = document.createElement('img');
+      mainImg.src = mainImageUrl;
+      mainImg.alt = `Produto ${i}`;
+      mainImg.className = 'main-img';
+      mainImg.onclick = function() {
+        modalImages = [mainImg];
+        const thumbnails = this.parentNode.querySelectorAll('.thumbnail-container img');
+        thumbnails.forEach(thumb => {
+          if (thumb.src !== mainImg.src) modalImages.push(thumb);
         });
-      });
+        
+        currentModalImageIndex = modalImages.findIndex(img => img.src === this.src);
+        document.getElementById('imgModal').style.display = 'block';
+        document.getElementById('modalImg').src = this.src;
+        resetZoom();
+      };
+
+      // Miniaturas
+      const thumbnails = document.createElement('div');
+      thumbnails.className = 'thumbnail-container';
+
+      // Miniatura principal
+      const mainThumb = document.createElement('img');
+      mainThumb.src = mainImg.src;
+      mainThumb.alt = `Produto ${i} ângulo 0`;
+      mainThumb.onclick = function() { mainImg.src = this.src; };
+      thumbnails.appendChild(mainThumb);
+
+      // Verifica miniaturas adicionais
+      for (let j = 1; j <= 5; j++) {
+        const thumbUrl = `https://shakaw67.github.io/Homol_Shakaw3DPrint/assets/img/produtos/${index}_${j}.webp`;
+        const thumbExists = await checkImageExists(thumbUrl);
+        if (thumbExists) {
+          const thumb = document.createElement('img');
+          thumb.src = thumbUrl;
+          thumb.alt = `Produto ${i} ângulo ${j}`;
+          thumb.onclick = function() { mainImg.src = this.src; };
+          thumbnails.appendChild(thumb);
+        }
+      }
+
+      imageColumn.appendChild(mainImg);
+      imageColumn.appendChild(thumbnails);
+
+      // Detalhes do produto
+      const details = document.createElement('div');
+      details.className = 'product-details';
+
+      const descricao = specialData.descriptions[i] || 
+        'Modelo <br> Imagem Real <br> Escala 1/18. Tamanho entre 8cm e 11cm de altura.' + 
+        specialData.defaultNote;
+      
+      const preco = specialData.prices[i] || 'R$ 60,00';
+
+      // HTML dos detalhes do produto
+      details.innerHTML = `
+        <h2>Código ${i}</h2>
+        <p><strong>Descrição:</strong> ${descricao}</p>
+        <p class="price">${preco}</p>
+        <div class="quantity-control">
+          <button class="qty-btn minus" onclick="changeQuantity(this, -1)">-</button>
+          <input type="number" class="quantity" value="1" min="1">
+          <button class="qty-btn plus" onclick="changeQuantity(this, 1)">+</button>
+        </div>
+      `;
+
+      // Botão de interesse
+      const interestBtn = document.createElement('button');
+      interestBtn.textContent = 'Adicionar aos interesses';
+      interestBtn.style.cssText = 'margin-top: 10px; padding: 8px 12px; background: #0077cc; color: white; border: none; border-radius: 5px; cursor: pointer;';
+      interestBtn.onclick = function() {
+        const quantity = parseInt(this.parentNode.querySelector('.quantity').value);
+        addToInterests(i, descricao, preco, mainImageUrl, quantity);
+        
+        // Feedback visual
+        this.textContent = '✓ Adicionado';
+        this.disabled = true;
+        setTimeout(() => {
+          this.textContent = 'Adicionar aos interesses';
+          this.disabled = false;
+        }, 2000);
+      };
+
+      details.appendChild(interestBtn);
+      product.appendChild(imageColumn);
+      product.appendChild(details);
+      
+      return product;
     }
 
-    // CARREGA TODOS OS PRODUTOS DISPONÍVEIS
+    /**
+     * Altera a quantidade do produto
+     */
+    function changeQuantity(btn, change) {
+      const input = btn.parentNode.querySelector('.quantity');
+      let newValue = parseInt(input.value) + change;
+      input.value = Math.max(newValue, 1);
+    }
+
+    /**
+     * Carrega todos os produtos disponíveis
+     */
     async function loadProducts() {
-      loader.style.display = 'block'; // Mostra o indicador de carregamento
-      catalog.innerHTML = ''; // Limpa o catálogo
+      loader.style.display = 'block';
+      catalog.innerHTML = '';
       
-      const maxProducts = 100; // Número máximo de produtos a verificar
-      let loadedProducts = 0; // Contador de produtos carregados
+      const maxProducts = 100;
+      let loadedProducts = 0;
       
-      // Verifica produtos de 1 a maxProducts
       for (let i = 1; i <= maxProducts; i++) {
         const product = await createProduct(i);
         if (product) {
           catalog.appendChild(product);
           loadedProducts++;
           
-          // Libera o event loop a cada 10 produtos para melhor performance
           if (i % 10 === 0) await new Promise(resolve => setTimeout(resolve, 0));
         }
       }
       
-      loader.style.display = 'none'; // Esconde o indicador de carregamento
+      loader.style.display = 'none';
       
-      // Mensagem se nenhum produto for encontrado
       if (loadedProducts === 0) {
         catalog.innerHTML = '<p style="text-align: center; color: white;">Nenhum produto encontrado.</p>';
       }
     }
 
-    // FUNÇÕES PARA OS INTERESSES
+    // =============================================
+    // FUNÇÕES DE INTERESSES
+    // =============================================
 
-    // ADICIONA UM ITEM À LISTA DE INTERESSES
-    function addToInterests(codigo, descricao, preco, imagem) {
-      interests.push({ codigo, descricao, preco, imagem });
+    /**
+     * Adiciona um item à lista de interesses
+     */
+    function addToInterests(codigo, descricao, preco, imagem, quantity = 1) {
+      // Verifica se o item já existe
+      const existingIndex = interests.findIndex(item => item.codigo === codigo);
+      
+      if (existingIndex >= 0) {
+        // Atualiza a quantidade se existir
+        interests[existingIndex].quantity += quantity;
+      } else {
+        // Adiciona novo item
+        interests.push({ 
+          codigo, 
+          descricao, 
+          preco, 
+          imagem, 
+          quantity 
+        });
+      }
+      
       updateInterestList();
     }
 
-    // ATUALIZA A LISTA DE INTERESSES NA INTERFACE
+    /**
+     * Atualiza a lista de interesses na interface
+     */
     function updateInterestList() {
       const list = document.getElementById("interestList");
       list.innerHTML = '';
       
-      // Mensagem se não houver itens
       if (interests.length === 0) {
         list.innerHTML = '<li style="color: gray;">Nenhum item adicionado.</li>';
         return;
       }
       
-      // Adiciona cada item à lista
       interests.forEach((item, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
@@ -929,28 +992,52 @@
             <small>${item.descricao}</small><br>
             <strong>${item.preco}</strong><br>
             <img src="${item.imagem}" style="width: 50px; margin-top: 5px;"><br>
-            <button onclick="removeInterest(${index})" style="margin-top: 5px; padding: 4px 8px; font-size: 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Remover</button>
+            <div style="display: flex; gap: 5px; margin-top: 5px; align-items: center;">
+              <button onclick="adjustInterestQuantity(${index}, -1)" style="padding: 2px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">-</button>
+              <span style="padding: 2px 8px;">${item.quantity}</span>
+              <button onclick="adjustInterestQuantity(${index}, 1)" style="padding: 2px 8px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">+</button>
+              <button onclick="removeInterest(${index})" style="padding: 2px 8px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Remover</button>
+            </div>
           </div>
         `;
         list.appendChild(li);
       });
       
-      updateContactMessage(); // Atualiza o resumo no formulário
+      updateContactMessage();
     }
 
-    // REMOVE UM ITEM DA LISTA DE INTERESSES
+    /**
+     * Ajusta a quantidade de um item na lista de interesses
+     */
+    function adjustInterestQuantity(index, change) {
+      interests[index].quantity += change;
+      
+      if (interests[index].quantity < 1) {
+        interests.splice(index, 1);
+      }
+      
+      updateInterestList();
+    }
+
+    /**
+     * Remove um item da lista de interesses
+     */
     function removeInterest(index) {
       interests.splice(index, 1);
       updateInterestList();
     }
 
-    // ALTERNA A VISIBILIDADE DO PAINEL DE INTERESSES
+    /**
+     * Alterna a visibilidade do painel de interesses
+     */
     function toggleInterestPanel() {
       const panel = document.getElementById("interestPanel");
       panel.style.display = panel.style.display === "none" ? "block" : "none";
     }
 
-    // MOSTRA O MODAL DE CONTATO
+    /**
+     * Mostra o modal de contato
+     */
     function showContactModal() {
       if (interests.length === 0) {
         alert('Por favor, adicione itens de interesse antes de enviar.');
@@ -961,97 +1048,105 @@
       updateContactMessage();
     }
 
-    // ATUALIZA A MENSAGEM DE CONTATO COM OS ITENS SELECIONADOS
+    /**
+     * Atualiza a mensagem de contato com os itens selecionados
+     */
     function updateContactMessage() {
-        const summaryContainer = document.getElementById('selectedItemsSummary');
-        const itemsDataField = document.getElementById('itemsData');
+      const summary = document.getElementById('selectedItemsSummary');
+      const itemsData = document.getElementById('itemsData');
+      
+      if (interests.length === 0) {
+        summary.innerHTML = '<div>Nenhum item selecionado</div>';
+        itemsData.value = '';
+        document.getElementById('customMessage').value = '';
+        return;
+      }
+      
+      let summaryHTML = '';
+      let itemsText = 'Itens de Interesse:\n\n';
+      let totalGeral = 0;
+      
+      // Agrupa itens por código para somar quantidades
+      const itemsGrouped = interests.reduce((acc, item) => {
+        const valorNumerico = parseFloat(item.preco.replace(/[^\d,]/g, '').replace(',', '.'));
+        const totalItem = valorNumerico * item.quantity;
         
-        summaryContainer.innerHTML = '';
-        
-        if (interests.length === 0) {
-            summaryContainer.innerHTML = '<div>Nenhum item selecionado</div>';
-            itemsDataField.value = '';
-            document.getElementById('customMessage').value = '';
-            return;
+        if (!acc[item.codigo]) {
+          acc[item.codigo] = {
+            ...item,
+            total: totalItem
+          };
+        } else {
+          acc[item.codigo].quantity += item.quantity;
+          acc[item.codigo].total += totalItem;
         }
         
-        const itemsGrouped = {};
-        let totalGeral = 0;
+        totalGeral += totalItem;
+        return acc;
+      }, {});
+      
+      // Prepara o HTML para exibição
+      Object.values(itemsGrouped).forEach(item => {
+        const totalFormatado = 'R$ ' + item.total.toFixed(2).replace('.', ',');
         
-        interests.forEach(item => {
-            const valorNumerico = parseFloat(item.preco.replace(/[^\d,]/g, '').replace(',', '.'));
-            
-            if (!itemsGrouped[item.codigo]) {
-                itemsGrouped[item.codigo] = {
-                    codigo: item.codigo,
-                    preco: item.preco,
-                    quantidade: item.quantity || 1,
-                    total: valorNumerico * (item.quantity || 1)
-                };
-            } else {
-                itemsGrouped[item.codigo].quantidade += item.quantity || 1;
-                itemsGrouped[item.codigo].total += valorNumerico * (item.quantity || 1);
-            }
-        });
+        summaryHTML += `
+          <div>
+            <strong>Código ${item.codigo}:</strong> 
+            ${item.quantity}x - ${item.preco} (Total: ${totalFormatado})
+          </div>
+        `;
         
-        let summaryHTML = '';
-        let itemsData = [];
-        
-        Object.values(itemsGrouped).forEach(item => {
-            const totalFormatado = 'R$ ' + item.total.toFixed(2).replace('.', ',');
-            totalGeral += item.total;
-            
-            summaryHTML += `
-                <div>
-                    <strong>Código ${item.codigo}:</strong> 
-                    ${item.quantidade}x - ${item.preco} (Total: ${totalFormatado})
-                </div>
-            `;
-            
-            itemsData.push({
-                codigo: item.codigo,
-                quantidade: item.quantidade,
-                preco: item.preco
-            });
-        });
-        
-        const totalGeralFormatado = 'R$ ' + totalGeral.toFixed(2).replace('.', ',');
-        summaryHTML += `<div style="margin-top: 10px; font-weight: bold;">TOTAL GERAL: ${totalGeralFormatado}</div>`;
-        
-        summaryContainer.innerHTML = summaryHTML;
-        itemsDataField.value = JSON.stringify(itemsData);
-        
-        document.getElementById('customMessage').value = `Olá, tenho interesse nos seguintes itens:\n\n${
-            Object.values(itemsGrouped).map(item => 
-                `Código ${item.codigo} (${item.quantidade}x) - ${item.preco}`
-            ).join('\n')
-        }\n\nTotal: ${totalGeralFormatado}\n\nPor favor, entre em contato para finalizar o pedido.`;
+        itemsText += `Código ${item.codigo} (${item.quantity}x) - ${item.preco}\n`;
+      });
+      
+      const totalGeralFormatado = 'R$ ' + totalGeral.toFixed(2).replace('.', ',');
+      summaryHTML += `<div style="margin-top: 10px; font-weight: bold;">TOTAL GERAL: ${totalGeralFormatado}</div>`;
+      itemsText += `\nTotal: ${totalGeralFormatado}`;
+      
+      // Atualiza a interface
+      summary.innerHTML = summaryHTML;
+      itemsData.value = itemsText;
+      
+      // Preenche a mensagem automática
+      document.getElementById('customMessage').value = `${itemsText}\n\nPor favor, entre em contato para finalizar o pedido.`;
     }
 
-    // FORMATAÇÃO DO WHATSAPP (VERSÃO ÚNICA)
+    // =============================================
+    // FORMATAÇÃO DO WHATSAPP
+    // =============================================
+
+    /**
+     * Formata o campo de WhatsApp
+     */
     document.getElementById('whatsapp').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 11) value = value.substring(0, 11);
-        
-        let formattedValue = '';
-        if (value.length > 0) formattedValue = '(' + value.substring(0, 2);
-        if (value.length > 2) formattedValue += ') ' + value.substring(2, 7);
-        if (value.length > 7) formattedValue += '-' + value.substring(7, 11);
-        
-        e.target.value = formattedValue;
+      let value = e.target.value.replace(/\D/g, '');
+      value = value.substring(0, 11);
+      
+      let formatted = '';
+      if (value.length > 0) formatted = '(' + value.substring(0, 2);
+      if (value.length > 2) formatted += ') ' + value.substring(2, 7);
+      if (value.length > 7) formatted += '-' + value.substring(7, 11);
+      
+      e.target.value = formatted;
     });
 
+    // =============================================
     // INICIALIZAÇÃO DA PÁGINA
-    window.onload = function() {
-        initCarousel();
-        loadProducts();
-        
-        const btn = document.getElementById("backToTopBtn");
-        window.onscroll = function() {
-            btn.style.display = window.scrollY > 200 ? "block" : "none";
-        };
-    };
+    // =============================================
 
+    /**
+     * Inicializa a página quando carregada
+     */
+    window.onload = function() {
+      initCarousel();
+      loadProducts();
+      
+      // Configura o botão "Voltar ao Topo"
+      const btn = document.getElementById("backToTopBtn");
+      window.onscroll = function() {
+        btn.style.display = window.scrollY > 200 ? "block" : "none";
+      };
+    };
   </script>
 </body>
 </html>
