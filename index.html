@@ -31,7 +31,7 @@
       width: 180px; /* Largura da logo */
       border-radius: 50%; /* Torna a imagem redonda */
       margin-bottom: 10px; /* Espaço abaixo da imagem */
-      border: 4px translucid; /* Borda branca */
+      border: 4px solid black; /* Borda preta */
     }
     .header h1 {
       margin: 10px 0 5px; /* Margens do título */
@@ -92,11 +92,13 @@
       z-index: 10; /* Camada superior */
       border-radius: 50%; /* Forma circular */
       font-size: 18px; /* Tamanho da fonte */
-      transition: background 0.3s; /* Transição suave */
-    }
-    .carousel-btn:hover {
-      background: rgba(0,0,0,0.8); /* Efeito hover */
-    }
+      transition: background 0.3s, opacity 0.3s; /* Adicione opacity na transição */
+}
+
+.carousel-btn:hover {
+  background: rgba(0,0,0,0.8);
+  opacity: 0.9; /* Efeito de escurecer */
+}
     .carousel-btn.prev {
       left: 10px; /* Posição à esquerda */
     }
@@ -254,11 +256,13 @@
       z-index: 10; /* Camada superior */
       border-radius: 50%; /* Forma circular */
       font-size: 18px; /* Tamanho da fonte */
-      transition: background 0.3s; /* Transição suave */
-    }
-    .modal-nav:hover {
-      background: rgba(0,0,0,0.8); /* Efeito hover */
-    }
+      transition: background 0.3s, opacity 0.3s; /* Adicione opacity */
+}
+
+.modal-nav:hover {
+  background: rgba(0,0,0,0.8);
+  opacity: 0.9;
+}
     .modal-prev {
       left: 20px; /* Posição à esquerda */
     }
@@ -286,7 +290,13 @@
       padding: 5px 10px; /* Espaçamento interno */
       cursor: pointer; /* Cursor de ponteiro */
       font-weight: bold; /* Texto em negrito */
-    }
+    transition: background 0.3s, transform 0.2s; /* Adicione transform */
+}
+
+.zoom-controls button:hover {
+  background: #ddd; /* Cor mais clara */
+  transform: scale(1.05); /* Pequeno efeito de crescimento */
+}
     
     /* RESPONSIVIDADE - TELAS MENORES QUE 768px */
     @media (max-width: 768px) {
@@ -365,7 +375,13 @@
       font-size: 14px; /* Tamanho da fonte */
       cursor: pointer; /* Cursor de ponteiro */
       box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra */
-    }
+   transition: background 0.3s, transform 0.2s;
+}
+
+.interest-btn:hover {
+  background: #218838; /* Verde mais escuro */
+  transform: scale(1.05);
+}
     
     /* MODAL DE CONTATO */
     .contact-modal {
@@ -420,12 +436,13 @@
       margin-top: 10px; /* Espaço acima */
       border-radius: 4px; /* Bordas levemente arredondadas */
       cursor: pointer; /* Cursor de ponteiro */
-    }
-    
-    /* EFEITO HOVER NO BOTÃO */
-    .contact-modal-content button:hover {
-      background-color: #004494; /* Cor azul mais escura */
-    }
+      transition: background 0.3s, transform 0.2s;
+}
+
+.contact-modal-content button:hover {
+  background: #004494;
+  transform: scale(1.02);
+}
     
     /* BOTÃO FECHAR */
     .close-contact {
