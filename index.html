@@ -568,17 +568,13 @@
   </div>
 
   <!-- MODAL PARA FORMULÁRIO DE CONTATO -->
-  <div id="contactModal" class="contact-modal">
-    <div class="contact-modal-content">
-      <!-- BOTÃO FECHAR -->
-      <span class="close-contact" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
-      <!-- TÍTULO -->
-      <h2>Enviar Interesses</h2>
-      <!-- FORMULÁRIO DE CONTATO (INTEGRAÇÃO COM FORMSUBMIT.CO) -->
-     <div id="contactModal" class="contact-modal">
+<div id="contactModal" class="contact-modal">
   <div class="contact-modal-content">
+    <!-- BOTÃO FECHAR -->
     <span class="close-contact" onclick="document.getElementById('contactModal').style.display='none'">&times;</span>
+    <!-- TÍTULO -->
     <h2>Enviar Interesses</h2>
+    <!-- FORMULÁRIO DE CONTATO -->
     <form id="contactForm" action="https://formsubmit.co/shakaw3dprint@hotmail.com" method="POST">
       <input type="hidden" name="_subject" value="Novo interesse - Shakaw 3D Print">
       <input type="hidden" name="_autoresponse" value="Recebemos seu interesse! Entraremos em contato em breve.">
@@ -1153,7 +1149,7 @@
   };
   
   // Envia para o Google Sheets
-  const googleScriptUrl = 'SUA_URL_DO_GOOGLE_SCRIPT_AQUI';
+  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwaCAdlMemCa0KbhnEP2IdoJV7Jvkfy_yrhfK1Rv1vn6ipUPTYykV8SMkSDSoBEmyrg/exec';
   fetch(googleScriptUrl, {
     method: 'POST',
     headers: {
