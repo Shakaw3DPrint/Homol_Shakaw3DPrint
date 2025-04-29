@@ -961,6 +961,8 @@
     }
 
     // ATUALIZA A MENSAGEM DE CONTATO COM OS ITENS SELECIONADOS
+    <script>
+    // FUNÇÃO ATUALIZADA PARA MOSTRAR APENAS CÓDIGO, VALOR E TOTAL
     function updateContactMessage() {
       const summaryContainer = document.getElementById('selectedItemsSummary');
       const itemsDataField = document.getElementById('itemsData');
@@ -973,37 +975,69 @@
         return;
       }
       
-      // Agrupa itens iguais por código
+      // Agrupa itens por código e calcula totais
       const itemsGrouped = {};
+      let totalGeral = 0;
       
       interests.forEach(item => {
         if (!itemsGrouped[item.codigo]) {
-          itemsGrouped[item.codigo] = { ...item, quantity: 1 };
+          // Extrai apenas o valor numérico do preço (ex: "R$ 60,00" → 60)
+          const valorNumerico = parseFloat(item.preco.replace(/[^\d,]/g, '').replace(',', '.'));
+          
+          itemsGrouped[item.codigo] = {
+            codigo: item.codigo,
+            preco: item.preco,
+            quantidade: 1,
+            total: valorNumerico
+          };
         } else {
-          itemsGrouped[item.codigo].quantity++;
+          const valorNumerico = parseFloat(item.preco.replace(/[^\d,]/g, '').replace(',', '.'));
+          itemsGrouped[item.codigo].quantidade++;
+          itemsGrouped[item.codigo].total += valorNumerico;
         }
       });
       
+      // Formata a exibição
       let summaryHTML = '';
       let itemsData = [];
       
-      // Cria o resumo e os dados para o formulário
       Object.values(itemsGrouped).forEach(item => {
+        // Formata o total para exibição (ex: 60 → "R$ 60,00")
+        const totalFormatado = 'R$ ' + item.total.toFixed(2).replace('.', ',');
+        
         summaryHTML += `
           <div>
             <strong>Código ${item.codigo}:</strong> 
-            ${item.quantity}x - ${item.preco}
+            ${item.quantidade}x - ${item.preco} (Total: ${totalFormatado})
           </div>
         `;
         
+        totalGeral += item.total;
+        
         itemsData.push({
           codigo: item.codigo,
-          quantidade: item.quantity,
-          preco: item.preco,
-          descricao: item.descricao
+          quantidade: item.quantidade,
+          preco: item.preco
         });
       });
       
+      // Adiciona o total geral
+      const totalGeralFormatado = 'R$ ' + totalGeral.toFixed(2).replace('.', ',');
+      summaryHTML += `<div style="margin-top: 10px; font-weight: bold;">TOTAL GERAL: ${totalGeralFormatado}</div>`;
+      
+      summaryContainer.innerHTML = summaryHTML;
+      itemsDataField.value = JSON.stringify(itemsData);
+      
+      // Mensagem simplificada para o campo de texto
+      const defaultMessage = `Olá, tenho interesse nos seguintes itens:\n\n${
+        Object.values(itemsGrouped).map(item => 
+          `Código ${item.codigo} (${item.quantidade}x) - ${item.preco}`
+        ).join('\n')
+      }\n\nTotal: ${totalGeralFormatado}\n\nPor favor, entre em contato para finalizar o pedido.`;
+      
+      document.getElementById('customMessage').value = defaultMessage;
+    }
+   
       summaryContainer.innerHTML = summaryHTML;
       itemsDataField.value = JSON.stringify(itemsData);
       
