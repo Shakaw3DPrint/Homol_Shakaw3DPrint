@@ -801,21 +801,94 @@
       document.getElementById('modalImg').style.transform = 'scale(1)';
     }
 
+ // =============================================
+    // FUNÇÕES DE ZOOM COM TECLADO
+    // =============================================
+
     /**
-     * Navega entre imagens no modal
+     * Adiciona controles de zoom pelo teclado
      */
-    function navigateModal(direction) {
-      currentModalImageIndex = (currentModalImageIndex + direction + modalImages.length) % modalImages.length;
-      document.getElementById('modalImg').src = modalImages[currentModalImageIndex].src;
-      resetZoom();
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('imgModal');
+      if (modal.style.display !== 'block') return;
+
+      switch (e.key) {
+        case '+':
+        case '=': // Considera o = que é o + sem shift
+          zoomImage(0.2);
+          e.preventDefault();
+          break;
+        case '-':
+          zoomImage(-0.2);
+          e.preventDefault();
+          break;
+        case '0':
+          resetZoom();
+          e.preventDefault();
+          break;
+        case 'Escape':
+          closeModal();
+          e.preventDefault();
+          break;
+      }
+    });
+
+    // =============================================
+    // FUNÇÕES DO MODAL DE IMAGEM (ATUALIZADAS)
+    // =============================================
+
+    /**
+     * Aplica zoom na imagem do modal
+     */
+    function zoomImage(zoomFactor) {
+      const modalImg = document.getElementById('modalImg');
+      currentZoom = Math.min(Math.max(currentZoom + zoomFactor, 0.5), 3);
+      modalImg.style.transform = `scale(${currentZoom})`;
+      
+      // Feedback visual
+      showZoomFeedback();
     }
 
     /**
-     * Fecha o modal
+     * Reseta o zoom da imagem
      */
-    function closeModal() {
-      document.getElementById('imgModal').style.display = 'none';
-      resetZoom();
+    function resetZoom() {
+      currentZoom = 1;
+      document.getElementById('modalImg').style.transform = 'scale(1)';
+      showZoomFeedback();
+    }
+
+    /**
+     * Mostra feedback visual do zoom atual
+     */
+    function showZoomFeedback() {
+      const zoomDisplay = document.getElementById('zoomDisplay') || createZoomDisplay();
+      zoomDisplay.textContent = `Zoom: ${Math.round(currentZoom * 100)}%`;
+      zoomDisplay.style.opacity = '1';
+      
+      setTimeout(() => {
+        zoomDisplay.style.opacity = '0';
+      }, 1000);
+    }
+
+    /**
+     * Cria o elemento de feedback do zoom
+     */
+    function createZoomDisplay() {
+      const zoomDisplay = document.createElement('div');
+      zoomDisplay.id = 'zoomDisplay';
+      zoomDisplay.style.position = 'fixed';
+      zoomDisplay.style.bottom = '60px';
+      zoomDisplay.style.left = '50%';
+      zoomDisplay.style.transform = 'translateX(-50%)';
+      zoomDisplay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+      zoomDisplay.style.color = 'white';
+      zoomDisplay.style.padding = '5px 10px';
+      zoomDisplay.style.borderRadius = '5px';
+      zoomDisplay.style.transition = 'opacity 0.5s';
+      zoomDisplay.style.zIndex = '10001';
+      document.body.appendChild(zoomDisplay);
+      return zoomDisplay;
     }
 
     // =============================================
