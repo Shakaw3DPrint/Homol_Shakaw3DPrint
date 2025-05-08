@@ -800,6 +800,13 @@
       currentZoom = 1;
       document.getElementById('modalImg').style.transform = 'scale(1)';
     }
+    /**
+     * Fecha o modal
+     */
+    function closeModal() {
+      document.getElementById('imgModal').style.display = 'none';
+      resetZoom();
+    }
 
  // =============================================
     // FUNÇÕES DE ZOOM COM TECLADO
